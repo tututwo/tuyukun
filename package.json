@@ -11,6 +11,7 @@
 		"check:watch": "svelte-check --tsconfig ./jsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@iconify/svelte": "^2.2.1",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/kit": "next",
 		"autoprefixer": "^10.4.7",
@@ -22,5 +23,9 @@
 		"typescript": "^4.7.4",
 		"vite": "^3.0.0"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"rough-notation": "^0.5.1",
+		"svelte-rough-notation": "^0.1.4"
+	}
 }
