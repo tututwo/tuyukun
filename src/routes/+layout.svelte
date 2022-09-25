@@ -10,20 +10,20 @@
   let navOptions = [
     { name: "Blog", visible: false },
     { name: "Project", visible: false },
-    { name: "About", visible: false },
+    // { name: "About", visible: false },
   ];
 </script>
 
 <nav class="bg-white shadow drop-shadow-lg flex justify-between">
   <!--! Left part  -->
-  <div class="container flex h-16">
+  <div class="container flex h-14">
     <div class="flex items-center px-2">
       <a
-        class="lg:text-3xl font-bold text-gray-900 hover:text-gray-400"
+        class="lg:text-3xl font-bold font-icon text-gray-900 hover:text-gray-400"
         href="/">Gordon Tu</a
       >
     </div>
-
+    
     <div class="lg:flex items-center">
       <!--* Nav Options  -->
       {#each navOptions as {name, visible}}
@@ -39,7 +39,7 @@
             animationDuration: 1000,
           }}
           href="/{name.toLowerCase()}"
-          class="m-2 font-medium text-lg text-gray-900">{name}</a
+          class="m-2 font-extrabold font-Franklin lg:text-lg text-gray-900">{name}</a
         >
       {/each}
     </div>
@@ -87,3 +87,6 @@
   </div>
 </nav>
 <slot />
+<style>
+
+</style>
