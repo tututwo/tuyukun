@@ -16,8 +16,8 @@
 <div class="container flex h-14">
     <div class="flex items-center px-2">
       <a
-        class="lg:text-3xl font-bold font-icon text-gray-900 hover:text-gray-400"
-        href="/">Gordon Tu 涂钰坤</a
+        class="relaitve lg:text-3xl font-bold font-icon text-gray-900 hover:text-gray-400"
+        href="/"><img src="/icon.svg" width="3%" class="absolute"/>Gordon Tu 涂钰坤</a
       >
     </div>
 

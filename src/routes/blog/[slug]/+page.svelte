@@ -1,10 +1,19 @@
 <script>
-    export let data;
-
+  export let data;
+$: console.log(data)
 </script>
 
-<article>
-    <h1>{data.title}</h1>
-    <p>Published on {data.date}</p>
+<main>
+  <article>
+    <!--* Cover Image -->
+
+    <!--* Title and info-->
+    <h1 class="lg:text-4xl">{data.title}</h1>
+    <div class="">
+      Published Date: {data.date}
+    </div>
+
+    <!--* Content  -->
     <svelte:component this = {data.content}></svelte:component>
-</article>
+  </article>
+</main>

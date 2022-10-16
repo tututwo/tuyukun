@@ -1,4 +1,5 @@
 <script>
+  // export const prerender = true
   import "../app.css";
 
   import Analytics from "$lib/Analytics.svelte";
