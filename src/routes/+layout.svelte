@@ -1,7 +1,7 @@
 <script>
   // export const prerender = true
   import "../app.css";
-
+  
   import Analytics from "$lib/Analytics.svelte";
   import Header from "$lib/landingPage/Header.svelte";
 </script>

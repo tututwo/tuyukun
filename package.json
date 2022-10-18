@@ -19,6 +19,7 @@
 		"autoprefixer": "^10.4.7",
 		"mdsvex": "^0.10.6",
 		"postcss": "^8.4.14",
+		"sass": "^1.55.0",
 		"svelte": "^3.44.0",
 		"svelte-check": "^2.7.1",
 		"svelte-preprocess": "^4.10.7",
@@ -28,6 +29,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"rehype-autolink-headings": "^6.1.1",
+		"rehype-external-links": "^2.0.1",
 		"rough-notation": "^0.5.1",
 		"svelte-rough-notation": "^0.1.4"
 	}

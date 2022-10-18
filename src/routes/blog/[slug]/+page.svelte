@@ -1,10 +1,10 @@
 <script>
   export let data;
-$: console.log(data)
+  import "./code.css";
 </script>
 
 <main>
-  <article>
+  <article class="leading-10 lg:text-xl ">
     <!--* Cover Image -->
 
     <!--* Title and info-->
@@ -17,3 +17,9 @@ $: console.log(data)
     <svelte:component this = {data.content}></svelte:component>
   </article>
 </main>
+
+<style>
+  /* :global(code) {
+   font-size:30px
+  } */
+</style>
