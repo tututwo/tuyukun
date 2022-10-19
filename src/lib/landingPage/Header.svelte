@@ -36,7 +36,7 @@
             animationDuration: 1000,
           }}
           href="/{name.toLowerCase()}"
-          class="m-2 font-extrabold font-Franklin lg:text-lg text-gray-900"
+          class="m-2 font-extrabold font-icon lg:text-3xl text-gray-900"
           >{name}</a
         >
       {/each}
