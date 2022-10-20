@@ -2,10 +2,16 @@
   export let data;
   import "./code.css";
   import "./blog.css";
+  // $: console.log(data)
 </script>
 
 <main>
   <article class="leading-10 lg:text-xl ">
+
+      <!-- {#each data.titleSection as section}
+      <h1>{section}</h1>
+      {/each} -->
+
     <!--* Cover Image -->
 
     <!--* Title and info-->

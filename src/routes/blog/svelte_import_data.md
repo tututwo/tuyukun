@@ -11,11 +11,15 @@ coverImage: "sveltekit-learn.png"
 coverWidth: 16
 coverHeight: 9
 excerpt: Learn the fundamentals of SvelteKit by building a statically generated blog from scratch, with Markdown support, Sass, an API, and an RSS feed.
+titleSection: 
+  - "Easy Way: import from '../path'"
+  - "Retro Way: asynchronous d3"
+  - "Svelte Way: `onMount`"
 ---
-
-- [Easy Way: import from "../path"](#easy-way-import-from-path)
-- [Retro Way: asynchronous d3](#retro-way-asynchronous-d3)
-- [Svelte Way: `onMount`](#svelte-way-onmount)
+<!-- <a href="#easy-way-import-from-path">Easy Way: import from "../path"</a> -->
+<!-- [Easy Way: import from "../path"](#easy-way-import-from-path) -->
+<!-- - [Retro Way: asynchronous d3](#retro-way-asynchronous-d3) -->
+<!-- - [Svelte Way: `onMount`](#svelte-way-onmount) -->
 
 Today I will introduce you three ways to import data in Svelte and talk about how I understand Svelte's `onMount`
 

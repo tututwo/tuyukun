@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'blogSectionLg': '15rem 1fr 15rem',
+        'blogSectionLg': '23rem 1fr 20rem',
         // Simple 16 column grid
         'projectCol': 'repeat(3, minmax(auto, 1fr))',
 
