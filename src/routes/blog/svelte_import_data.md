@@ -3,9 +3,9 @@ title: "Svelte Data Viz: Part 1 - How to import Data in Svelte"
 date: "2021-12-27"
 updated: "2022-09-06"
 categories:
-  - "Svelte"
-  - "Javascript"
-  - "Tutorial"
+  - "svelte"
+  - "javascript"
+  - "tutorial"
 
 coverImage: "sveltekit-learn.png"
 coverWidth: 16
@@ -16,10 +16,7 @@ titleSection:
   - "Retro Way: asynchronous d3"
   - "Svelte Way: `onMount`"
 ---
-<!-- <a href="#easy-way-import-from-path">Easy Way: import from "../path"</a> -->
-<!-- [Easy Way: import from "../path"](#easy-way-import-from-path) -->
-<!-- - [Retro Way: asynchronous d3](#retro-way-asynchronous-d3) -->
-<!-- - [Svelte Way: `onMount`](#svelte-way-onmount) -->
+
 
 Today I will introduce you three ways to import data in Svelte and talk about how I understand Svelte's `onMount`
 

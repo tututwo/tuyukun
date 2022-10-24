@@ -29,6 +29,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"d3": "^7.6.1",
+		"gsap": "file:gsap-bonus.tgz",
 		"rehype-autolink-headings": "^6.1.1",
 		"rehype-external-links": "^2.0.1",
 		"rehype-slug": "^5.0.1",

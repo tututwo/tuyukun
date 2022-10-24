@@ -3,8 +3,8 @@ title: "Svelte Data Viz: Part 2 - Each Data"
 date: "2022-09-07"
 updated: "2022-10-20"
 categories:
-  - "Svelte"
-  - "Javascript"
+  - "svelte"
+  - "javascript"
 
 coverImage: "sveltekit-learn.png"
 coverWidth: 16

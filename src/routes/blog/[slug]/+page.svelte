@@ -5,7 +5,7 @@
   // $: console.log(data)
 </script>
 
-<main>
+<main class="overflow-auto">
   <article class="leading-10 lg:text-xl ">
 
       <!-- {#each data.titleSection as section}
@@ -15,7 +15,7 @@
     <!--* Cover Image -->
 
     <!--* Title and info-->
-    <h1 class="lg:text-4xl">{data.title}</h1>
+    <h1 class="lg:text-4xl font-heading font-bold">{data.title}</h1>
     <div class="">
       Published Date: {data.date}
     </div>

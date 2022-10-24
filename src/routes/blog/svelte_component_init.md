@@ -3,8 +3,8 @@ title: "Svelte Data Viz: Part 0 - Component Initialization and Updates"
 date: "2021-12-07"
 updated: "2022-09-06"
 categories:
-  - "Svelte"
-  - "Javascript"
+  - "svelte"
+  - "javascript"
 
 coverImage: "sveltekit-learn.png"
 coverWidth: 16
