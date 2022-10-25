@@ -20,3 +20,6 @@
 
 /** Practice Styling blog  */
 
+* {
+  box-sizing: border-box;
+}

@@ -9,6 +9,7 @@
   onMount(async () => {
     await transition();
   });
+
   export let data;
 </script>
 

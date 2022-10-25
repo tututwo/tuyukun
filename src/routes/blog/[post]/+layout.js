@@ -3,7 +3,7 @@ export const load = async ({ fetch, params }) => {
   const responses = await fetch(`/api/posts`);
   const posts = await responses.json();
 
-  const post = await import (`../${params.slug}.md`)
+  const post = await import (`../posts/${params.post}.md`)
 
   const { title, date, titleSection, categories } = post.metadata
   const content = post.default

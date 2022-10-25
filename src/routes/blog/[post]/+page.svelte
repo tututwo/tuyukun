@@ -2,20 +2,16 @@
   export let data;
   import "./code.css";
   import "./blog.css";
-  // $: console.log(data)
+  // $: console.log(data.posts)
 </script>
 
 <main class="overflow-auto">
   <article class="leading-10 lg:text-xl ">
 
-      <!-- {#each data.titleSection as section}
-      <h1>{section}</h1>
-      {/each} -->
-
     <!--* Cover Image -->
 
     <!--* Title and info-->
-    <h1 class="lg:text-4xl font-heading font-bold">{data.title}</h1>
+    <h1 class="lg:text-[3rem] font-heading font-extrabold my-5 leading-[3rem]">{data.title}</h1>
     <div class="">
       Published Date: {data.date}
     </div>

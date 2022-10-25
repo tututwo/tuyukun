@@ -23,7 +23,7 @@
   
   $: path_call.moveTo(x0, y0);
   $: path_call.bezierCurveTo(cpx1, cpy1, cpx2, cpy2, x, y);
-  $: console.log(path_call["_"])
+  // $: console.log(data.posts)
 </script>
 
 <ul>

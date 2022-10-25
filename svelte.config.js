@@ -22,7 +22,7 @@ const config = {
       rehypePlugins: [
         rehypeSlug,
 				rehypeAutolinkHeadings,
-				[rehypeExternalLinks, { target: '_blank' }],
+				// [rehypeExternalLinks, { target: '_blank' }],
 
 			],
     })

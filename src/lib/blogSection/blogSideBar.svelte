@@ -10,7 +10,7 @@
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-");
 
-  $: console.log(categories);
+  // $: console.log(categories);
 </script>
 
 <aside class="flex flex-col justify-start ml-4">
@@ -27,12 +27,12 @@
   {/each}
 </div>
 
-<div class="lg:text-2xl font-extrabold font-heading">Categories</div>
-<div class="flex gap-x-4">
+<div class="lg:text-2xl font-extrabold font-heading mt-4 mb-2">Categories</div>
+<div class="flex gap-x-4 ">
   {#each categories as category}
-  <span class="font-[2000] lg:text-lg bg-[#9AC6BD] text-white px-2 rounded-lg hover:bg-[#F7D138] transition-colors ease-in-out">
+  <a href="/blog/category/{category}" class="font-[2000] lg:text-lg bg-[#9AC6BD] text-white px-2 rounded-lg hover:bg-[#F7D138] transition-colors ease-in-out">
     {category}
-  </span>
+  </a>
 {/each}
 </div>
 </aside>
