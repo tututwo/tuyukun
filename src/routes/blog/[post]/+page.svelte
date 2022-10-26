@@ -17,13 +17,17 @@
     </div>
 
     <!--* Content  -->
-    <div class="content">
+    <!--! Material Design https://m3.material.io/styles/typography/applying-type -->
+    <div class="content leading-1.6 md:leading-5 lg:leading-[1.21rem]">
       <svelte:component this={data.content} />
     </div>
   </article>
 </main>
 
 <style global>
+  .content {
+    font-size: 1rem
+  }
   .content p a {
     border-bottom: 2px solid #9ab9c7;
     color: #9ab9c7;

@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        'blogSectionLg': '23rem minmax(auto, 1fr) 12rem',
+        'blogSectionLg': '12rem minmax(auto, 1fr) 23rem',
         // Simple 16 column grid
         'projectCol': 'repeat(3, minmax(auto, 1fr))',
 
@@ -21,9 +21,7 @@ module.exports = {
     },
     fontFamily: {
       'icon': ['HanYiShouJinShuFan'],
-      "Postino":["postino-std"],
-      "Franklin":["Libre Franklin"],
-      "heading": ["Karla"]
+      "heading": ["EB Garamond"]
     }
   },
   plugins: []
