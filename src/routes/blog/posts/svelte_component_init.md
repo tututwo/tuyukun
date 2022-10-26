@@ -10,8 +10,14 @@ coverImage: "sveltekit-learn.png"
 coverWidth: 16
 coverHeight: 9
 excerpt: Learn the fundamentals of SvelteKit by building a statically generated blog from scratch, with Markdown support, Sass, an API, and an RSS feed.
+titleSection: 
+  - "The Early Stage"
+  - "A Bit Later: Mounting"
+  - "Svelte's Updating Pattern"
 ---
-
+<script>
+  import BlogHeading from "$lib/blogSection/blogHeading.svelte"
+</script>
 I often see
 
 > this must be called during component initialisation
@@ -20,7 +26,7 @@ in Svelte's docs, but what exactly is **Component Initialization**???
 
 After inquiring some smart people on the Internet, I would like to jog down some notes about what's included in **Component Initialization** in case of forgetting it again, like I always do.
 
-## The Early Stage: run `<script>` once
+<BlogHeading />
 
 TL DR:
 
@@ -95,7 +101,7 @@ If I want to change/update DOM elements via clicking a button:
 <!-- Ruben Leija made an [awesome graph](https://linguinecode.com/post/3-methods-to-run-code-after-dom-update-in-svelte).
 
 ![img](flow.png) -->
-
+<BlogHeading />
 To put it in my words in this case:
 
 When I change those variables in `<script>`, they are changed in `<script>`. Once Svelte is about to compile the code to `.js` to update the DOM, this very action is batched!

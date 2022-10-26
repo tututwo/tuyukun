@@ -2,7 +2,7 @@
   export let data;
   import "./code.css";
   import "./blog.css";
-  // $: console.log(data.posts)
+  import BlogHeading from "$lib/blogSection/blogHeading.svelte"
 </script>
 
 <main class="overflow-auto">
@@ -18,7 +18,9 @@
 
     <!--* Content  -->
     <!--! Material Design https://m3.material.io/styles/typography/applying-type -->
+
     <div class="content leading-1.6 md:leading-5 lg:leading-[1.21rem]">
+      <BlogHeading />
       <svelte:component this={data.content} />
     </div>
   </article>

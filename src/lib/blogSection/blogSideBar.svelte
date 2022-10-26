@@ -1,4 +1,5 @@
 <script>
+  import {intersecting} from "$lib/utils/blogAttributes"
   export let categories = [];
   export let titleSection = [];
   // https://amirardalan.com/blog/generate-blog-heading-anchors-in-react-markdown
@@ -10,7 +11,7 @@
       .replace(/\s+/g, "-")
       .replace(/-+/g, "-");
 
-  // $: console.log(categories);
+  $: console.log($intersecting);
 </script>
 
 <aside class="flex flex-col justify-start ml-4">
@@ -20,7 +21,7 @@
 
   <div>
     {#each titleSection as section}
-      <div class="font-light lg:text-lg">
+      <div class="font-light lg:text-lg" style = "{$intersecting ? "border-radius: 4px": ""}">
         <a href={"#" + string(section)}>{section}</a>
       </div>
     {/each}
