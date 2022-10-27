@@ -1,42 +1,46 @@
 <script>
-  import IntersectionObserver from "svelte-intersection-observer";
-  import { intersecting } from "$lib/utils/blogAttributes";
+  import { headingStringParse } from "$lib/utils";
   import { gsap, ScrollTrigger } from "../../scripts/gsap";
   import { onMount } from "svelte";
-  let element, intersectingInHeading;
-  $: $intersecting = intersectingInHeading;
-  let threshold = 0.6;
 
+  import { headingData } from "$lib/utils/blogAttributes"
+
+  /**
+   * @type {any}
+   */
+  export let heading = "";
   // scrolltrigger way
   onMount(() => {
-    console.log(intersectingInHeading)
-    
-    ScrollTrigger.create({
-      trigger: ".scrolltrigger-demo",
-      start: "top top",
-      markers: true,
-      end: "bottom+=300px 50%+=300px",
-      onUpdate: (self) => {
-        console.log(
-          "progress:",
-          self.progress.toFixed(3),
-          "direction:",
-          self.direction,
-          "velocity",
-          self.getVelocity()
-        );
-      },
+    const headingElements = gsap.utils.toArray(".scrolltrigger-demo");
+
+    // create = register
+    headingElements.forEach((headingElement) => {
+      ScrollTrigger.create({
+        trigger: headingElement,
+        start: "top top+=300px",
+        markers: true,
+        end: "bottom 50%",
+        // equivalent to on:eventlistener. this is a callback
+        onUpdate: (self) => {
+          
+          $headingData.progressAtCurrentHeading = self.progress.toFixed(3)
+          $headingData.currentHeading = self.trigger.id
+          console.log(self.trigger.id)
+          // console.log(
+          //   "progress:",
+          //   self.progress.toFixed(3),
+          //   "direction:",
+          //   self.direction,
+          //   "velocity",
+          //   self.getVelocity()
+          // );
+        },
+      });
+      ScrollTrigger.refresh();
     });
-    ScrollTrigger.refresh() 
   });
 </script>
 
-<IntersectionObserver
-  {element}
-  {threshold}
-  bind:intersecting={intersectingInHeading}
->
-  <h2 id="the-early-stage">The Early Stage</h2>
-</IntersectionObserver>
-
-<h2 id="the-early-stage" class="scrolltrigger-demo">The Early Stage from Scrolltrigger</h2>
+<h2 id={headingStringParse(heading)} class="scrolltrigger-demo">
+  {@html heading}
+</h2>

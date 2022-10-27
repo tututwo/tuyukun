@@ -26,7 +26,7 @@ in Svelte's docs, but what exactly is **Component Initialization**???
 
 After inquiring some smart people on the Internet, I would like to jog down some notes about what's included in **Component Initialization** in case of forgetting it again, like I always do.
 
-<BlogHeading />
+<BlogHeading heading = "The Early Stage"/>
 
 TL DR:
 
@@ -72,7 +72,7 @@ Macrotasks like `setTimeOut` runs during **Component Initialization** but not wh
 
 Lihau has this wonderful [thread](https://twitter.com/lihautan/status/1396111979799093254) about Component Initialization, and he introduced this trick: _In `<script>`, put everything inside ONE function. Whatever runs at the first time runs during **Component Initialization**._
 
-## A Bit Later: Mounting
+<BlogHeading heading = "A Bit Later: Mounting"/>
 
 Basically when `<scirpt>` is run. Elements defined in _.svelte_, the component, is added to the DOM. This step is called **component mouting**.
 
@@ -88,8 +88,7 @@ Stuff inside `onMount` looks around see what's available, then RUN. In this [sta
 >
 > `setTimeOut(()=>{}, 1000)` then marks an absolute point of the timeline: 1 second. Regardless of loading data or mouting component, its callback just got push to the task queue to run after 1 second.
 
-# Svelte's Updating Pattern
-
+<BlogHeading heading = "Svelte's Updating Pattern"/>
 While making data visualization using Svelte, I often want to add animation or transition in Svelte. Sometimes I don't get to see any animation playing. Why? It's all due to Svelte's special updating pattern.
 
 If I want to change/update DOM elements via clicking a button:
@@ -101,7 +100,7 @@ If I want to change/update DOM elements via clicking a button:
 <!-- Ruben Leija made an [awesome graph](https://linguinecode.com/post/3-methods-to-run-code-after-dom-update-in-svelte).
 
 ![img](flow.png) -->
-<BlogHeading />
+<BlogHeading heading = "Svelte's Updating Pattern"/>
 To put it in my words in this case:
 
 When I change those variables in `<script>`, they are changed in `<script>`. Once Svelte is about to compile the code to `.js` to update the DOM, this very action is batched!

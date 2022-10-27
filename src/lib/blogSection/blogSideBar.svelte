@@ -1,17 +1,11 @@
 <script>
-  import {intersecting} from "$lib/utils/blogAttributes"
+  import { headingStringParse } from "$lib/utils";
+  
+  import { headingData } from "$lib/utils/blogAttributes"
+
   export let categories = [];
   export let titleSection = [];
   // https://amirardalan.com/blog/generate-blog-heading-anchors-in-react-markdown
-  $: string = (str) =>
-    str
-      .replace(/^\s+|\s+$/g, "")
-      .toLowerCase()
-      .replace(/[^a-z0-9 -]/g, "")
-      .replace(/\s+/g, "-")
-      .replace(/-+/g, "-");
-
-  $: console.log($intersecting);
 </script>
 
 <aside class="flex flex-col justify-start ml-4">
@@ -20,9 +14,19 @@
   <h2 class="lg:text-2xl font-extrabold font-heading">Sections</h2>
 
   <div>
+    <!--* Moving border  -->
+    <div></div>
+    <!--* Side heading links  -->
     {#each titleSection as section}
-      <div class="font-light lg:text-lg" style = "{$intersecting ? "border-radius: 4px": ""}">
-        <a href={"#" + string(section)}>{section}</a>
+    <!--TODO when the h2 element enters .5, the a element change the border  -->
+    <!--TODO if progress>.5 & id of h2 == section   -->
+      <div
+        class="font-light lg:text-lg"
+        style={$headingData.progressAtCurrentHeading > 0.5 && $headingData.currentHeading == headingStringParse(section)
+          ? "border-radius: 10px;border: 2px solid red"
+          : "border: none"}
+      >
+        <a href={"#" + headingStringParse(section)}>{section}</a>
       </div>
     {/each}
   </div>
