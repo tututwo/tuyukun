@@ -17,7 +17,7 @@ export const fetchMarkdownPosts = async () => {
 
   return allPosts;
 };
-
+  // https://amirardalan.com/blog/generate-blog-heading-anchors-in-react-markdown
 export const headingStringParse = (str) =>
   str
     .replace(/^\s+|\s+$/g, "")

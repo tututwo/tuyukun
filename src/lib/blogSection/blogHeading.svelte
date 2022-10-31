@@ -25,7 +25,7 @@
           
           $headingData.progressAtCurrentHeading = self.progress.toFixed(3)
           $headingData.currentHeading = self.trigger.id
-          console.log(self.trigger.id)
+          // console.log(self.trigger.id)
           // console.log(
           //   "progress:",
           //   self.progress.toFixed(3),

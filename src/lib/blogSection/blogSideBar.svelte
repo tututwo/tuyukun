@@ -1,11 +1,24 @@
 <script>
   import { headingStringParse } from "$lib/utils";
-  
-  import { headingData } from "$lib/utils/blogAttributes"
+  import { headingData } from "$lib/utils/blogAttributes";
+
+  import { gsap } from "../../scripts/gsap";
+  import { onMount } from "svelte";
 
   export let categories = [];
   export let titleSection = [];
-  // https://amirardalan.com/blog/generate-blog-heading-anchors-in-react-markdown
+
+  onMount(() => {
+    const tl = gsap.timeline();
+    tl.to("#sideHeading", {
+      rotation: 360,
+      // duration: 2,
+      ease: "power4.easeOut",
+      opacity: 1,
+      // repeat: -1,
+      // yoyo: true,
+    });
+  });
 </script>
 
 <aside class="flex flex-col justify-start ml-4">
@@ -15,14 +28,16 @@
 
   <div>
     <!--* Moving border  -->
-    <div></div>
+    <div />
     <!--* Side heading links  -->
     {#each titleSection as section}
-    <!--TODO when the h2 element enters .5, the a element change the border  -->
-    <!--TODO if progress>.5 & id of h2 == section   -->
+      <!--TODO when the h2 element enters .5, the a element change the border  -->
+      <!--TODO if progress>.5 & id of h2 == section   -->
       <div
         class="font-light lg:text-lg"
-        style={$headingData.progressAtCurrentHeading > 0.5 && $headingData.currentHeading == headingStringParse(section)
+        id = "sideHeading"
+        style={$headingData.progressAtCurrentHeading > 0.5 &&
+        $headingData.currentHeading == headingStringParse(section)
           ? "border-radius: 10px;border: 2px solid red"
           : "border: none"}
       >
