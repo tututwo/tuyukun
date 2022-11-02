@@ -13,12 +13,15 @@
     /**
      * Blog Curve
      */
-    let blogSectionWidth = 1500;
+    let blogSectionWidth = 1000;
     let blogSectionHeight = 400;
 
     $: sideLineLength =
         ((blogSectionWidth * data.posts.length) / 2.5 - blogSectionWidth) * 0.5;
-
+    $: if (pathElement && sideLineLength) {
+        pathLength = pathElement.getTotalLength();
+    }
+    $: console.log(pathLength)
     function draw(context) {
         context.moveTo(-sideLineLength, blogSectionHeight); // move current point to ⟨10,10⟩
         context.lineTo(0, blogSectionHeight); // draw straight line to ⟨100,10⟩
@@ -32,22 +35,17 @@
 
         return context; // not mandatory, but will make it easier to chain operations
     }
-    $: {
-        if (pathElement && blogSectionWidth > 1000) {
-            pathLength = pathElement.getTotalLength();
-            console.log(pathLength);
-        }
-    }
-    // onMount(async () => {
-    //     await transition();
-    //     await tick()
-    //     pathLength = pathElement.getTotalLength();
-    //     console.log(pathLength)
-    // });
+    
+    onMount(async () => {
+        await transition();
+        await tick()
+        
+    
+    });
 </script>
 
 {#if pathElement}
-    <div class="relative overflow-x">
+    <div class="relative overflow-x z-50">
         {#each data.posts as post, index}
             {@const cardLocation = pathElement.getPointAtLength(
                 (pathLength / data.posts.length) * index
@@ -74,14 +72,15 @@
     </div>
 {/if}
 <div
-    class="w-full h-[100vh] overflow-auto"
+    class="w-full h-full overflow-auto"
     bind:clientWidth={blogSectionWidth}
     bind:clientHeight={blogSectionHeight}
 >
+<!--? all reactivity must have some dependent variable -->
     <svg>
         <!-- d={path_call["_"]} -->
         <path
-            d={draw(path()).toString()}
+            d={draw(path(), sideLineLength).toString()}
             bind:this={pathElement}
             stroke="pink"
             fill="none"
