@@ -245,7 +245,7 @@
             }}
         >
             <div class="front border-18 border-black">
-                <img src="/projects/svelte_teacherSalary.png" />
+                <!-- <img src="/projects/svelte_teacherSalary.png" /> -->
             </div>
 
             <div class="back">
@@ -387,6 +387,7 @@
         -moz-transition: all 0.4s ease-in-out;
         -webkit-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
+        background-image: url("/projects/svelte_teacherSalary.png");
     }
 
     .postcard:hover .front {
