@@ -287,6 +287,7 @@
             }}
         >
             <div class="front border-18 border-black">
+                <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="/projects/chart_broadway.png" />
             </div>
 
@@ -388,7 +389,7 @@
         transition: all 0.4s ease-in-out;
     }
 
-    .flip .front {
+    .postcard:hover .front {
         -webkit-transform: rotateY(180deg);
         -moz-transform: rotateY(180deg);
 
@@ -413,7 +414,7 @@
         transition: all 0.4s ease-in-out;
     }
 
-    .flip .back {
+    .postcard:hover .back {
         z-index: 1000;
 
         -webkit-transform: rotateX(0deg) rotateY(0deg);
