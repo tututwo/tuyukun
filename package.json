@@ -11,11 +11,17 @@
 		"check:watch": "svelte-check --tsconfig ./jsconfig.json --watch"
 	},
 	"devDependencies": {
+		"@dimforge/rapier3d-compat": "^0.10.0",
 		"@iconify/svelte": "^2.2.1",
 		"@sveltejs/adapter-auto": "next",
 		"@sveltejs/adapter-static": "^1.0.0-next.44",
 		"@sveltejs/kit": "next",
+		"@threlte/core": "^5.0.2",
+		"@threlte/extras": "^4.8.0",
+		"@threlte/preprocess": "^0.0.2",
+		"@threlte/rapier": "^0.5.0",
 		"@types/gtag.js": "^0.0.11",
+		"@types/three": "^0.146.0",
 		"autoprefixer": "^10.4.7",
 		"mdsvex": "^0.10.6",
 		"postcss": "^8.4.14",
@@ -24,12 +30,15 @@
 		"svelte-check": "^2.7.1",
 		"svelte-intersection-observer": "^0.10.0",
 		"svelte-preprocess": "^4.10.7",
+		"svelte-sequential-preprocessor": "^0.0.7",
 		"tailwindcss": "^3.1.6",
+		"three": "^0.146.0",
 		"typescript": "^4.7.4",
 		"vite": "^3.0.0"
 	},
 	"type": "module",
 	"dependencies": {
+		"css-doodle": "^0.30.8",
 		"d3": "^7.6.1",
 		"gsap": "file:gsap-bonus.tgz",
 		"rehype-autolink-headings": "^6.1.1",

@@ -1,102 +1,71 @@
 <script>
-    import { gsap, Flip } from "../../scripts/gsap";
-    import { onMount, tick } from "svelte";
-    import { path } from "d3-path";
-    export let data;
+	import { Canvas, InteractiveObject, OrbitControls, T } from '@threlte/core'
+  import { useTexture } from '@threlte/core'
+  import { useLoader } from '@threlte/core'
+	import { spring } from 'svelte/motion'
+	import { degToRad } from 'three/src/math/MathUtils'
 
-    let pathElement;
-    let pathLength = 0;
+  import { onMount } from 'svelte';
+  //* window metrics
+  $: outerWidth = 0
+	$: innerWidth = 0
+	$: outerHeight = 0
+	$: innerHeight = 0
 
-    const val = { distance: 0 };
-    function transition() {}
-    // https://greensock.com/forums/topic/28849-how-to-make-gsap-draggable-stop-on-click-and-start-on-click/
-    /**
-     * Blog Curve
-     */
-    let blogSectionWidth = 1000;
-    let blogSectionHeight = 400;
+	const scale = spring(1)
+  const perspective = 800
+  $: fov = (180 * (2 * Math.atan(innerHeight / 2 / perspective))) / Math.PI
 
-    $: sideLineLength =
-        ((blogSectionWidth * data.posts.length) / 2.5 - blogSectionWidth) * 0.5;
-    $: if (pathElement && sideLineLength) {
-        pathLength = pathElement.getTotalLength();
-    }
-    $: console.log(pathLength)
-    function draw(context) {
-        context.moveTo(-sideLineLength, blogSectionHeight); // move current point to ⟨10,10⟩
-        context.lineTo(0, blogSectionHeight); // draw straight line to ⟨100,10⟩
-        context.quadraticCurveTo(
-            blogSectionWidth / 2,
-            0,
-            blogSectionWidth,
-            blogSectionHeight
-        ); // draw an arc, the turtle ends up at ⟨194.4,108.5⟩
-        context.lineTo(blogSectionWidth + sideLineLength, blogSectionHeight); // draw straight line to ⟨300,10⟩
+  //* texture: for each blog cover
+  const tex = useTexture('/demo.png')
+  let oneCanvas
+  onMount(() => {
+    const { width, height, top, left } = oneCanvas.getBoundingClientRect()
 
-        return context; // not mandatory, but will make it easier to chain operations
-    }
-    
-    onMount(async () => {
-        await transition();
-        await tick()
-        
-    
-    });
+  })
+  
 </script>
 
-{#if pathElement}
-    <div class="relative overflow-x z-50">
-        {#each data.posts as post, index}
-            {@const cardLocation = pathElement.getPointAtLength(
-                (pathLength / data.posts.length) * index
-            )}
+<svelte:window bind:innerWidth bind:outerWidth bind:innerHeight bind:outerHeight />
 
-            <!-- <div class="absolute border-2 w-[10%] h-[200px]" id = "project-card" style = "--left: {pathLength / data.posts.length * (index + 1)}px"> -->
-            <div
-                class="absolute border-2 w-[60%] h-[200px]"
-                id="project-card"
-                style="--left: {cardLocation.x}px; --top: {cardLocation.y}px"
-            >
-                <h2>
-                    <a href={post.path}>
-                        <span class="font-extrabold">{post.meta.title}</span>
-                    </a>
-                </h2>
-                Published {post.meta.date}
+<div class="" bind:this = {oneCanvas}>
+	<Canvas>
+		<T.PerspectiveCamera makeDefault position={[0, 0, perspective]} fov>
+			<OrbitControls maxPolarAngle={degToRad(80)} enableZoom={false} target={{ y: 0.5 }} />
+		</T.PerspectiveCamera>
 
-                {#each post.meta.categories as category}
-                    <div>{category}</div>
-                {/each}
-            </div>
-        {/each}
-    </div>
-{/if}
-<div
-    class="w-full h-full overflow-auto"
-    bind:clientWidth={blogSectionWidth}
-    bind:clientHeight={blogSectionHeight}
->
-<!--? all reactivity must have some dependent variable -->
-    <svg>
-        <!-- d={path_call["_"]} -->
-        <path
-            d={draw(path(), sideLineLength).toString()}
-            bind:this={pathElement}
-            stroke="pink"
-            fill="none"
-            stroke-width="10px"
-        />
-    </svg>
+		<T.DirectionalLight castShadow position={[3, 10, 10]} />
+		<T.DirectionalLight position={[-3, 10, -10]} intensity={0.2} />
+		<T.AmbientLight intensity={0.2} />
+
+		<!-- Cube -->
+		<T.Group scale={$scale}>
+			<T.Mesh position.y={0.5} castShadow let:ref>
+				<!-- Add interaction -->
+				<InteractiveObject
+					object={ref}
+					interactive
+					on:pointerenter={() => ($scale = 2)}
+					on:pointerleave={() => ($scale = 1)}
+				/>
+
+				<T.BoxGeometry />
+				<!-- <T.MeshStandardMaterial color="#333333" /> -->
+        <T.MeshBasicMaterial map={tex} />
+			</T.Mesh>
+		</T.Group>
+
+		<!-- Floor -->
+		<!-- <T.Mesh receiveShadow rotation.x={degToRad(-90)}>
+			<T.CircleGeometry args={[3, 72]} />
+			<T.MeshStandardMaterial color="white" />
+		</T.Mesh> -->
+	</Canvas>
 </div>
 
 <style>
-    #project-card {
-        left: var(--left);
-        top: var(--top);
-    }
-
-    svg {
-        width: 1000%;
-        height: 100%;
-    }
+  div {
+    height: 1000px;
+    height: 600px
+  }
 </style>

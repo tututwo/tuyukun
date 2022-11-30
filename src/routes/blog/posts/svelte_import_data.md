@@ -56,8 +56,10 @@ Let's say you are importing data in `App.svelte`.
 
 When you use this method to import data:
 
-- You need to have the data locally
-- The data is **often** saved in `src` folder
++ You need to have the data locally
++ The data is **often** saved in `src` folder
+
+
 
 ## Retro Way: asynchronous d3
 
