@@ -1,5 +1,5 @@
 <script>
-  import { gsap, Flip } from "../../../../scripts/gsap";
+  import { gsap, Flip } from "../../../../lib/utils/scripts/gsap";
   import { onMount } from "svelte";
 
   function transition() {

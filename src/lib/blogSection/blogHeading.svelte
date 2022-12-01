@@ -1,6 +1,6 @@
 <script>
   import { headingStringParse } from "$lib/utils";
-  import { gsap, ScrollTrigger } from "../../scripts/gsap";
+  import { gsap, ScrollTrigger } from "../utils/scripts/gsap";
   import { onMount } from "svelte";
 
   import { headingData } from "$lib/utils/blogAttributes"

@@ -2,7 +2,7 @@
   import { headingStringParse } from "$lib/utils";
   import { headingData } from "$lib/utils/blogAttributes";
 
-  import { gsap } from "../../scripts/gsap";
+  import { gsap } from "../utils/scripts/gsap";
   import { onMount } from "svelte";
 
   export let categories = [];

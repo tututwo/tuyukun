@@ -1,5 +1,5 @@
 <script>
-    import { gsap, ScrollTrigger } from "../../scripts/gsap";
+    import { gsap, ScrollTrigger } from "../../../lib/utils/scripts/gsap";
     import { onMount, tick } from "svelte";
     import { path } from "d3-path";
     export let data;

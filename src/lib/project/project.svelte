@@ -1,4 +1,10 @@
-<div class="postcard hover lg:w-[600px] lg:h-[400px] m-0 relative border-3 border-black BORDER-B-8">
+<script>
+
+
+    export let individualProject;
+</script>
+
+
     <div class="front border-18 border-black" />
 
     <div class="back">
@@ -27,7 +33,7 @@
             <div class="inner">S</div>
         </div> -->
     </div>
-</div>
+
 
 <style lang="scss">
     $stamp: #eb8046;
@@ -65,7 +71,7 @@
         background-image: url("/projects/svelte_teacherSalary.png");
     }
 
-    .postcard:hover .front {
+    :global(.postcard:hover .front) {
         -webkit-transform: rotateY(180deg);
         -moz-transform: rotateY(180deg);
 
@@ -90,7 +96,7 @@
         transition: all 0.4s ease-in-out;
     }
 
-    .postcard:hover .back {
+    :global(.postcard:hover .back) {
         z-index: 1000;
 
         -webkit-transform: rotateX(0deg) rotateY(0deg);
