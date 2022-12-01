@@ -6,7 +6,7 @@
   import Header from "$lib/landingPage/Header.svelte";
 </script>
 <div class="w-full h-full min-h-[100vh]">
-<Header />
+<!-- <Header /> -->
 <Analytics />
 <slot />
 

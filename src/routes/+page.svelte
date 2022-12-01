@@ -94,9 +94,15 @@
     ];
 </script>
 
-<header class="relative w-full h-[500px] ">
+<header class="relative w-full h-[500px] flex items-center justify-center">
+
+    <div class="grid">
+        <div>Hi, I'm Gordon Tu. I make </div>
+        <div class="font-bold font-heading text-[5rem]">Charts Maps Creative Coding</div>
+        <div>on the web. </div>
+    </div>
     <!-- https://css-doodle.com -->
-    <div class="absolute h-full w-full flex items-center justify-center">
+    <div class="absolute h-full w-full flex top-10 items-start justify-center">
         <!-- <style>
             css-doodle {
                 --rule: (
@@ -128,19 +134,19 @@
         <css-doodle>
             {`
     :doodle {
-      @grid: 12 / 50vmin 80vmin;
+      @grid: 12 / 90vmin 90vmin;
       perspective: 90vmin;
       perspective-origin: 0% -140%;
-      transform: scale(.6);
+      transform: scale(3);
     }
   
     :container {
       transform-style: preserve-3d;
-      animation: camera 5s ease-in-out infinite;
+      animation: camera 20s ease-in-out infinite;
       animation-direction: alternate-reverse;
     }
   
-    --ds: @r(1.5s, 6s, .1);
+    --ds: @r(4s, 12s, .1);
     --size: @r(1, 9);
     
     /* Thanks to mootari for the tip */
@@ -157,6 +163,7 @@
       content: '';
       @size: calc(var(--size) * 10%);
       background: @p(#00b8a9, #f8f3d4, #f6416c, #ffde7d);
+   
     }
   
     position: absolute;
@@ -232,20 +239,10 @@
         {/each}
     </section> -->
 
-    <!--* Post  -->
+    <!--* Project  -->
     <section class="flex ">
-        <div
-            class="postcard hover border-3 border-black BORDER-B-8"
-            class:flip
-            on:mouseover={() => {
-                flip = true;
-            }}
-            on:mouseleave={() => {
-                flip = false;
-            }}
-        >
+        <div class="postcard hover border-3 border-black BORDER-B-8">
             <div class="front border-18 border-black">
-                <!-- <img src="/projects/svelte_teacherSalary.png" /> -->
             </div>
 
             <div class="back">
@@ -276,16 +273,8 @@
                 </div>
             </div>
         </div>
-        <div
-            class="postcard hover border-8 border-black mb-20"
-            class:flip
-            on:mouseover={() => {
-                flip = true;
-            }}
-            on:mouseleave={() => {
-                flip = false;
-            }}
-        >
+        
+        <div class="postcard hover border-8 border-black mb-20">
             <div class="front border-18 border-black">
                 <!-- svelte-ignore a11y-missing-attribute -->
                 <img src="/projects/chart_broadway.png" />
@@ -328,7 +317,7 @@
 <svelte:head>
     <script
         defer
-        src="https://unpkg.com/css-doodle@0.8.2/css-doodle.js"
+        src="https://unpkg.com/css-doodle@0.30.8/css-doodle.js"
     ></script>
 </svelte:head>
 
@@ -493,4 +482,5 @@
             text-align: center;
         }
     }
+
 </style>
