@@ -1,5 +1,7 @@
 <script>
     import { onMount } from "svelte";
+    import Icon from '@iconify/svelte';
+
     onMount(() => {
         let isChrome = navigator.userAgent.toLowerCase().match(/chrome/);
         let doodle = document.querySelector("css-doodle");
@@ -95,11 +97,18 @@
 </script>
 
 <header class="relative w-full h-[500px] flex items-center justify-center">
-
     <div class="grid">
-        <div>Hi, I'm Gordon Tu. I make </div>
-        <div class="font-bold font-heading text-[5rem]">Charts Maps Creative Coding</div>
-        <div>on the web. </div>
+        <div>Hi, I'm Gordon Tu. I make</div>
+        <div class="font-bold font-heading text-[5rem]">
+            <span class="bg-[#DD504C] rounded-3xl text-white px-2">Charts</span> 
+            <span class="bg-[#63ACD1] rounded-3xl text-white px-2">Maps</span> 
+            <span class="bg-[#ffde7d] rounded-3xl text-white px-2">Creative Coding</span>
+        </div>
+        <div>
+            on the web, and I also write 
+            <span class="bg-[#B6BFC6] rounded-xl text-white px-2 font-bold font-heading text-[2rem]">Blogs</span> 
+            <button><Icon icon="material-symbols:arrow-circle-right-outline-rounded" /></button>
+        </div>
     </div>
     <!-- https://css-doodle.com -->
     <div class="absolute h-full w-full flex top-10 items-start justify-center">
@@ -242,8 +251,7 @@
     <!--* Project  -->
     <section class="flex ">
         <div class="postcard hover border-3 border-black BORDER-B-8">
-            <div class="front border-18 border-black">
-            </div>
+            <div class="front border-18 border-black" />
 
             <div class="back">
                 <div class="message">
@@ -273,7 +281,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="postcard hover border-8 border-black mb-20">
             <div class="front border-18 border-black">
                 <!-- svelte-ignore a11y-missing-attribute -->
@@ -334,10 +342,6 @@
     // }
 
     $stamp: #eb8046;
-
-    body {
-        padding: 1em;
-    }
 
     .postcard {
         width: 600px;
@@ -482,5 +486,4 @@
             text-align: center;
         }
     }
-
 </style>
