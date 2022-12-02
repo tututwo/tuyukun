@@ -5,6 +5,7 @@
     import BlogSection from "$lib/blogSection/BlogSection.svelte";
 
     import { gsap, ScrollTrigger } from "$lib/utils/scripts/gsap";
+    import { fade, fly } from 'svelte/transition';
     import { onMount } from "svelte";
     import { flip } from "svelte/animate";
     let options = {};
@@ -16,6 +17,7 @@
      * Project
      */
     let projectSectionNodes = [];
+    let projectNodes = [];
     function filterProjectButton(event) {
         // list = list.filter(n => n !== number)
 
@@ -28,18 +30,36 @@
         let eachProject = await projectSectionNodes.children;
         // console.log(eachProject)
         gsap.to("section", {
-            x: 0,
+            x: -1000,
         });
     });
 
+    function gsapOut(node, {}) {
+        // gsap.to
+    }
+    /**
+     * Blog
+     */
     function showBlogSelection() {
         currentProjectTitleTag = [];
+        if (document.querySelector(".postcard")) {
+            console.log("Triggered");
+            gsap.utils.toArray(projectNodes).forEach((project, i) => {
+                gsap.to(project, {
+                    x: -100,
+                    top: "-100%",
+                    ease: "expo.inOut",
+                    duration: 100,
+                });
+            });
+        }
     }
 </script>
 
 <header class="relative w-full h-[500px] flex items-center justify-center">
     <div class="grid">
         <div>Hi, I'm Gordon Tu. I make</div>
+        <!--* Project -->
         <div class="font-bold font-heading text-[5rem]">
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <span
@@ -57,6 +77,7 @@
                 on:click={filterProjectButton}>Creative Coding</span
             >
         </div>
+        <!--* Blog -->
         <div>
             on the web, and I also write
             <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -77,21 +98,21 @@
     <!--* Project  -->
     {#key currentProjectTitleTag}
         <section class="flex flex-wrap" bind:this={projectSectionNodes}>
-            {#each currentProjectTitleTag as individualProject (individualProject.id)}
+            {#each currentProjectTitleTag as individualProject, i (individualProject.id)}
                 <div
-                    animate:flip={options}
+                    in:fly="{{ y: 200, duration: 2000 }}" out:gsapOut
                     class="postcard hover lg:w-[600px] lg:h-[400px] m-0 relative border-3 border-black BORDER-B-8"
+                    bind:this={projectNodes[i]}
                 >
                     <Project {individualProject} />
                 </div>
             {/each}
         </section>
     {/key}
-    
+
     <!--* Blog -->
     {#if currentProjectTitleTag.length == 0}
-    <BlogSection />
-
+        <BlogSection />
     {/if}
 </main>
 

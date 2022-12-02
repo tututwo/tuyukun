@@ -68,7 +68,7 @@
         -moz-transition: all 0.4s ease-in-out;
         -webkit-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
-        background-image: url("/projects/svelte_teacherSalary.png");
+        background-image: url("/projects/Charts/svelte_teacherSalary.png");
     }
 
     :global(.postcard:hover .front) {
