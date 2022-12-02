@@ -23,7 +23,7 @@
                         <i class="fas fa-walking" />
                     </div>
                     <div class="info">
-                        <div class="main">Blonkisoaz</div>
+                        <a class="main" href="https://observablehq.com/@tututwo/lightning?collection=@tututwo/three-js-creative-coding-practice">Blonkisoaz</a>
                         <div class="sub">Omuke trughte a otufta</div>
                     </div>
                 </div>

@@ -4,6 +4,10 @@
 
     import Analytics from "$lib/Analytics.svelte";
     import Header from "$lib/landingPage/Header.svelte";
+
+    import { fade } from "svelte/transition";
+
+    export let data;
 </script>
 
 <div
@@ -93,19 +97,26 @@
         src="https://unpkg.com/css-doodle@0.30.8/css-doodle.js"
     ></script>
 </svelte:head>
-<div class="w-full h-full min-h-[100vh]">
-    <!-- <Header /> -->
-    <Analytics />
-    <slot />
 
-    <footer>
-        This website is made of love, and shoulder pain as well as endless
-        support from Svelte community.
-    </footer>
-</div>
+{#key data.currentRoute}
+    <div
+        class="w-full h-full min-h-[100vh]"
+        in:fade={{ duration: 150, delay: 150 }}
+        out:fade={{ duration: 150 }}
+    >
+        <!-- <Header /> -->
+        <Analytics />
+        <slot />
+    </div>
+{/key}
+
+<footer>
+    This website is made of love, and shoulder pain as well as endless support
+    from Svelte community.
+</footer>
 
 <style>
-  :global(body) {
-    position: relative
-  }
+    :global(body) {
+        position: relative;
+    }
 </style>

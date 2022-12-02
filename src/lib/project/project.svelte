@@ -1,39 +1,34 @@
 <script>
-
-
     export let individualProject;
 </script>
 
+<div class="front border-18 border-black lg:w-[30vw] lg:h-[400px] overflow-hidden bg-cover bg-no-repeat" 
+style="background-image: url(/projects/Charts/svelte_teacherSalary.png);"/>
 
-    <div class="front border-18 border-black" />
-
-    <div class="back">
-        <div class="message">
-            <p>Dude!</p>
-            <p>Having a great time in the desert!</p>
-            <p>
-                Saw my first camel today, but its not the same without you here.
-            </p>
-            <p>Talk soon,</p>
-            <p>D x</p>
-        </div>
-        <div class="address">
-            <p>Eight Arms Head Office</p>
-            <p>London</p>
-            <p>E3 2PX</p>
-            <p><a href="https://eightarms.co.uk">eightarms.co.uk</a></p>
-        </div>
-        <div class="photo-by">
-            Photo by the incredible <a
-                href="http://www.fluidr.com/photos/8181572@N05/interesting"
-                >Dave Carr</a
-            >
-        </div>
-        <!-- <div class="stamp">
+<div class="back lg:w-[30vw] lg:h-[400px] overflow-hidden">
+    <div class="message">
+        <p>Dude!</p>
+        <p>Having a great time in the desert!</p>
+        <p>Saw my first camel today, but its not the same without you here.</p>
+        <p>Talk soon,</p>
+        <p>D x</p>
+    </div>
+    <div class="address">
+        <p>Eight Arms Head Office</p>
+        <p>London</p>
+        <p>E3 2PX</p>
+        <p><a href="https://eightarms.co.uk">eightarms.co.uk</a></p>
+    </div>
+    <div class="photo-by">
+        Photo by the incredible <a
+            href="http://www.fluidr.com/photos/8181572@N05/interesting"
+            >Dave Carr</a
+        >
+    </div>
+    <!-- <div class="stamp">
             <div class="inner">S</div>
         </div> -->
-    </div>
-
+</div>
 
 <style lang="scss">
     $stamp: #eb8046;
@@ -41,16 +36,9 @@
     .front,
     .back {
         box-shadow: 0 0 20px 0 #999;
-        width: 600px;
-        height: 400px;
-        overflow: hidden;
-        width: 580px;
-        height: 380px;
-        overflow: hidden;
+        
         border: 10px solid #fff;
         position: absolute;
-        top: 0;
-        left: 0;
     }
 
     .front {
@@ -68,7 +56,7 @@
         -moz-transition: all 0.4s ease-in-out;
         -webkit-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
-        background-image: url("/projects/Charts/svelte_teacherSalary.png");
+        
     }
 
     :global(.postcard:hover .front) {
@@ -101,12 +89,6 @@
 
         -webkit-transform: rotateX(0deg) rotateY(0deg);
         -moz-transform: rotateX(0deg) rotateY(0deg);
-    }
-
-    img {
-        width: 100%;
-        height: auto;
-        display: block;
     }
 
     .message,
