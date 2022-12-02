@@ -99,6 +99,7 @@
 
 <main class="w-full h-full flex items-center justify-center" >
     <!--* Project  -->
+    {#if currentProjectTitleTag.length > 0}
     {#key currentProjectTitleTag}
     <!-- style:width={headerWidth +"px"} -->
         <section class="flex items-center justify-start flex-wrap h-full w-full"  >
@@ -109,16 +110,16 @@
                         currentProjectTitleTagLength:
                             currentProjectTitleTag.length,
                     }}
-                    class="postcard hover"
+                    class="postcard hover  lg:w-1/3 lg:h-[400px] mb-10 px-4 relative border-8 border-black flex justify-center items-center"
                     bind:this={projectNodes[i]}
                 >
-                <!--  lg:w-1/3 lg:h-[400px] mb-10 px-4 relative border-2 border-black flex justify-center items-center -->
+                <!--  -->
                     <Project {individualProject} />
                 </div>
             {/each}
         </section>
     {/key}
-
+    {/if}
     <!--* Blog -->
     {#if currentProjectTitleTag.length == 0}
         <BlogSection />
@@ -130,11 +131,11 @@
 </footer>
 
 <style>
-    .postcard {
+    /* .postcard {
         width: 33%;
         height: 400px;
         display: flex;
         justify-content: center;
         align-items: center;
-    }
+    } */
 </style>

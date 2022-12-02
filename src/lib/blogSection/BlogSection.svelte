@@ -39,10 +39,9 @@
         display: flex;
         flex-direction: row;
         justify-content: center;
-        align-items: center;
         overflow: hidden;
-        height: 100vh;
-
+        height: 80vh;
+        width:100%;
         font-family: "Roboto", sans-serif;
         transition: 0.25s;
 
@@ -60,7 +59,7 @@
             overflow: hidden;
 
             min-width: 600px;
-            max-width: 900px;
+            max-width: 800px;
             width: calc(100% - 100px);
 
             height: 400px;
