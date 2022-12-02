@@ -5,7 +5,7 @@
     import BlogSection from "$lib/blogSection/BlogSection.svelte";
 
     import { gsap, ScrollTrigger } from "$lib/utils/scripts/gsap";
-    import { fade, fly } from 'svelte/transition';
+    import { fade, fly } from "svelte/transition";
     import { onMount } from "svelte";
     import { flip } from "svelte/animate";
     let options = {};
@@ -24,7 +24,6 @@
         currentProjectTitleTag = $projectCardInfo.filter(
             (d) => d.titleTag == event.target.textContent
         );
-        console.log(currentProjectTitleTag);
     }
     onMount(async () => {
         let eachProject = await projectSectionNodes.children;
@@ -35,24 +34,51 @@
     });
 
     function gsapOut(node, {}) {
-        // gsap.to
+        let duration = 2;
+        let betweenProjectTimeline = gsap.timeline();
+        let ProjectToBlogTimeline = gsap.timeline();
+        console.log(currentProjectTitleTag.length)
+        if (currentProjectTitleTag.length == 0) {
+            ProjectToBlogTimeline.to(node, {
+                duration,
+                x: -1000,
+            });
+            return {
+                duration: duration * 1000,
+                tick: (t, u) => {
+                    ProjectToBlogTimeline.progress(u);
+                },
+            };
+        }
+
+        betweenProjectTimeline.to(node, {
+            duration,
+            y: 1000,
+        });
+
+        return {
+            duration: duration * 1000,
+            tick: (t, u) => {
+                betweenProjectTimeline.progress(u);
+            },
+        };
     }
     /**
      * Blog
      */
     function showBlogSelection() {
         currentProjectTitleTag = [];
-        if (document.querySelector(".postcard")) {
-            console.log("Triggered");
-            gsap.utils.toArray(projectNodes).forEach((project, i) => {
-                gsap.to(project, {
-                    x: -100,
-                    top: "-100%",
-                    ease: "expo.inOut",
-                    duration: 100,
-                });
-            });
-        }
+        // if (document.querySelector(".postcard")) {
+        //     console.log("Triggered");
+        //     gsap.utils.toArray(projectNodes).forEach((project, i) => {
+        //         gsap.to(project, {
+        //             x: -100,
+        //             top: "-100%",
+        //             ease: "expo.inOut",
+        //             duration: 100,
+        //         });
+        //     });
+        // }
     }
 </script>
 
@@ -100,7 +126,8 @@
         <section class="flex flex-wrap" bind:this={projectSectionNodes}>
             {#each currentProjectTitleTag as individualProject, i (individualProject.id)}
                 <div
-                    in:fly="{{ y: 200, duration: 2000 }}" out:gsapOut
+                    in:fly={{ y: 200, duration: 2000 }}
+                    out:gsapOut
                     class="postcard hover lg:w-[600px] lg:h-[400px] m-0 relative border-3 border-black BORDER-B-8"
                     bind:this={projectNodes[i]}
                 >
