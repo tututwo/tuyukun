@@ -2,8 +2,8 @@
     export let individualProject;
 </script>
 
-<div class="front border-18 border-black lg:w-[30vw] lg:h-[400px] overflow-hidden bg-cover bg-no-repeat" 
-style="background-image: url(/projects/Charts/svelte_teacherSalary.png);"/>
+<div class="front border-18 border-black lg:w-[30vw] lg:h-[400px] overflow-hidden bg-cover bg-no-repeat bg-center" 
+style="background-image: url({individualProject.projectImgSource});"/>
 
 <div class="back lg:w-[30vw] lg:h-[400px] overflow-hidden">
     <div class="message">
@@ -14,16 +14,13 @@ style="background-image: url(/projects/Charts/svelte_teacherSalary.png);"/>
         <p>D x</p>
     </div>
     <div class="address">
-        <p>Eight Arms Head Office</p>
-        <p>London</p>
-        <p>E3 2PX</p>
-        <p><a href="https://eightarms.co.uk">eightarms.co.uk</a></p>
+        <a href="{individualProject.projectLink}">{individualProject.projectName}</a>
+        {#each individualProject.tools as tool}
+        <p>{tool}</p>
+        {/each}
     </div>
     <div class="photo-by">
-        Photo by the incredible <a
-            href="http://www.fluidr.com/photos/8181572@N05/interesting"
-            >Dave Carr</a
-        >
+        Created By 涂钰坤, aka, Gordon Tu
     </div>
     <!-- <div class="stamp">
             <div class="inner">S</div>

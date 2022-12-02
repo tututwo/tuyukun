@@ -21,7 +21,8 @@ export function gsapOut(node, {currentProjectTitleTagLength=1}) {
 
     betweenProjectTimeline.to(node, {
         duration,
-        scale: 0.05
+        scale: 0.05,
+        delay:1.5
     });
 
     return {
@@ -52,7 +53,8 @@ export function gsapIn(node, {currentProjectTitleTagLength=1}) {
 
     betweenProjectTimeline.from(node, {
         duration,
-        scale:.05
+        scale:.05,
+        delay:0.5
     });
 
     return {
