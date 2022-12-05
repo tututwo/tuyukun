@@ -198,7 +198,7 @@ export const projectCardInfo = writable([
         projectDescription:
             "",
         projectLink:
-            "",
+            "/projects/Maps/map_elevation_ridge.png",
         projectImgSource:
             "/projects/Maps/map_elevation_ridge.png",
         tools: ["QGIS", "Adobe Illustrator"],
@@ -210,7 +210,7 @@ export const projectCardInfo = writable([
         projectDescription:
             "",
         projectLink:
-            "",
+            "/projects/Maps/map_Manhattan.png",
         projectImgSource:
             "/projects/Maps/map_Manhattan.png",
         tools: ["QGIS"],
@@ -234,7 +234,7 @@ export const projectCardInfo = writable([
         projectDescription:
             "",
         projectLink:
-            "",
+            "/projects/Maps/map_shuimomap_shuimo.png",
         projectImgSource:
             "/projects/Maps/map_shuimomap_shuimo.png",
         tools: ["QGIS"],
@@ -246,7 +246,7 @@ export const projectCardInfo = writable([
         projectDescription:
             "",
         projectLink:
-            "",
+            "/projects/Maps/map_twodragons.png",
         projectImgSource:
             "/projects/Maps/map_twodragons.png",
         tools: ["QGIS"],

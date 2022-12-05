@@ -123,7 +123,7 @@ out:gsapOut={{
     currentProjectTitleTagLength:
         currentProjectTitleTag.length,
 }} -->
-<main class="h-full min-h-[2000px] w-full flex items-center justify-center" >
+<main class="h-full min-h-[2000px] w-full flex justify-center" >
     <!--* Project  -->
     {#if currentProjectTitleTag.length > 0}
         {#key currentProjectTitleTag}
