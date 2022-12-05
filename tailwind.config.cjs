@@ -2,6 +2,8 @@
 module.exports = {
   content: ['./src/**/*.{html,js,svelte,ts}'],
   theme: {
+
+
     extend: {
       gridTemplateColumns: {
         'blogSectionLg': '12rem minmax(auto, 1fr) 23rem',

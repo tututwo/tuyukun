@@ -3,11 +3,11 @@
 </script>
 
 <div
-    class="front border-18 border-black lg:w-[30vw] lg:h-[400px] overflow-hidden bg-cover bg-no-repeat bg-center"
+    class="front  border-black w-full lg:h-[400px] overflow-hidden bg-cover bg-no-repeat bg-center"
     style="background-image: url({individualProject.projectImgSource});"
 />
 
-<div class="back lg:w-[30vw] lg:h-[400px] overflow-hidden">
+<div class="back w-full lg:h-[400px] overflow-hidden">
     <div class="message">
         <p>Dude!</p>
         <p>Having a great time in the desert!</p>
@@ -25,17 +25,14 @@
     </div>
     <div class="photo-by">Created By 涂钰坤, aka, Gordon Tu</div>
     <div class="stamp">
-        <div class="inner">S</div>
+        
     </div>
 </div>
 
 <style lang="scss">
-    $stamp: #eb8046;
-
     .front,
     .back {
         box-shadow: 0 0 20px 0 #999;
-
         border: 10px solid #fff;
         position: absolute;
     }
@@ -131,14 +128,15 @@
     }
 
     .stamp {
-        width: 50px;
-        height: 60px;
+        width: 60px;
+        height: 90px;
         position: absolute;
         top: 10px;
         right: 10px;
-        background: $stamp;
+        background-image: url("/印章.png");
+        background-size: cover;
         padding: 5px;
-        border: 2px dotted #fff;
+        // border: 2px dotted #fff;
         .inner {
             border: 4px solid rgba(255, 255, 255, 0.3);
             position: absolute;
