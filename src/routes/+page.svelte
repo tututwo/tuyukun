@@ -18,30 +18,31 @@
      */
     let headerWidth = 1000;
     let titleTags = [
-        {tag: "Charts", color: "#E4523E"},
-        {tag: "Maps", color: "#81ABD9"},
-        {tag: "Creative Coding", color: "#0EAEC9"}
+        { tag: "Charts", color: "#E4523E" },
+        { tag: "Maps", color: "#81ABD9" },
+        { tag: "Creative Coding", color: "#0EAEC9" },
     ];
     let tagTextColor = "black";
 
-    let tagNodes = []
+    let tagNodes = [];
     /*
      * Project
      */
 
-    $: currentProjectTitleTag = $projectCardInfo.sort((a,b) => {return new Date(b.date) - new Date(a.date);});
+    $: currentProjectTitleTag = $projectCardInfo.sort((a, b) => {
+        return new Date(b.date) - new Date(a.date);
+    });
     let projectNodes = [];
 
-    let visible = false
+    let visible = false;
     function filterProjectButton(event) {
         currentProjectTitleTag = $projectCardInfo.filter(
             // .textContent will not work
             // https://stackoverflow.com/questions/24427621/innertext-vs-innerhtml-vs-label-vs-text-vs-textcontent-vs-outertext
             (d) => d.titleTag == event.target.innerText
         );
-    
     }
-    
+
     /**
      * Blog
      */
@@ -62,11 +63,11 @@
             class="font-black font-heading text-[2rem] cursor-pointer flex items-center justify-start clearText"
         >
             <!-- svelte-ignore a11y-click-events-have-key-events -->
-            {#each titleTags as {tag, color}, index}
+            {#each titleTags as { tag, color }, index}
                 <div
                     class="actualClearText mx-2 pb-2 mt-2  flex items-center justify-center w-[20vw] text-[2rem] tracking-tight"
-                    style="color: {"white"}"
-                    bind:this = {tagNodes[index]}
+                    style="color: {'white'}"
+                    bind:this={tagNodes[index]}
                     on:click={filterProjectButton}
                     use:annotateAction={{
                         visible: true,
@@ -118,12 +119,8 @@
         </div>
     </div>
 </header>
-<!-- in:gsapIn
-out:gsapOut={{
-    currentProjectTitleTagLength:
-        currentProjectTitleTag.length,
-}} -->
-<main class="h-full min-h-[2000px] w-full flex justify-center" >
+
+<main class="h-full min-h-[2000px] w-full flex justify-center">
     <!--* Project  -->
     {#if currentProjectTitleTag.length > 0}
         {#key currentProjectTitleTag}
@@ -131,13 +128,18 @@ out:gsapOut={{
             <!-- flex items-center justify-start flex-wrap h-full w-full -->
             <section
                 class="h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2"
-                style:width={headerWidth +"px"}
+                style:width={headerWidth + "px"}
             >
                 {#each currentProjectTitleTag as individualProject, i (individualProject.projectName)}
                     <div
                         id={individualProject.projectName}
                         class="postcard hover lg:w-[90%] gap-[10rem] lg:h-[400px] mb-10 relative flex justify-center items-center"
                         bind:this={projectNodes[i]}
+                        in:gsapIn
+                        out:gsapOut={{
+                            currentProjectTitleTagLength:
+                                currentProjectTitleTag.length,
+                        }}
                     >
                         <!--  -->
                         <Project {individualProject} />
@@ -152,13 +154,12 @@ out:gsapOut={{
     {/if}
 </main>
 
-
 <style>
     :global(.rough-annotation) {
         z-index: 999;
     }
     :global(.rough-annotation:hover) {
-        opacity: .4
+        opacity: 0.4;
     }
     .clearText {
         position: relative;
