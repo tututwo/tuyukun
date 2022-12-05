@@ -123,14 +123,14 @@ out:gsapOut={{
     currentProjectTitleTagLength:
         currentProjectTitleTag.length,
 }} -->
-<main class="h-full w-full flex items-center justify-center" >
+<main class="h-full min-h-[2000px] w-full flex items-center justify-center" >
     <!--* Project  -->
     {#if currentProjectTitleTag.length > 0}
         {#key currentProjectTitleTag}
             <!-- style:width={headerWidth +"px"} -->
             <!-- flex items-center justify-start flex-wrap h-full w-full -->
             <section
-                class="h-full grid grid-cols-3"
+                class="h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2"
                 style:width={headerWidth +"px"}
             >
                 {#each currentProjectTitleTag as individualProject, i (individualProject.projectName)}

@@ -1,27 +1,26 @@
 <script>
     export let individualProject;
+
+    let projectText = individualProject.projectDescription
 </script>
 
 <div
-    class="front  border-black w-full lg:h-[400px] overflow-hidden bg-cover bg-no-repeat bg-center"
+    class="front  border-black w-full lg:h-[400px] bg-cover bg-no-repeat bg-center"
     style="background-image: url({individualProject.projectImgSource});"
 />
 
-<div class="back w-full lg:h-[400px] overflow-hidden">
-    <div class="message">
-        <p>Dude!</p>
-        <p>Having a great time in the desert!</p>
-        <p>Saw my first camel today, but its not the same without you here.</p>
-        <p>Talk soon,</p>
-        <p>D x</p>
-    </div>
-    <div class="address">
-        <a href={individualProject.projectLink}
+<div class="back w-full lg:h-[400px] flex flex-col justify-center items-center">
+
+    <div class="address flex flex-col justify-center text-center">
+        <a href={individualProject.projectLink} class="font-bold font-icon lg:text-[2rem]"
             >{individualProject.projectName}</a
         >
         {#each individualProject.tools as tool}
             <p>{tool}</p>
         {/each}
+    </div>
+    <div class="message">
+        {@html projectText}
     </div>
     <div class="photo-by">Created By 涂钰坤, aka, Gordon Tu</div>
     <div class="stamp">
@@ -35,6 +34,7 @@
         box-shadow: 0 0 20px 0 #999;
         border: 10px solid #fff;
         position: absolute;
+
     }
 
     .front {
@@ -81,43 +81,43 @@
 
     :global(.postcard:hover .back) {
         z-index: 1000;
-
+        background-color: white;
         -webkit-transform: rotateX(0deg) rotateY(0deg);
         -moz-transform: rotateX(0deg) rotateY(0deg);
     }
 
     .message,
     .address {
-        font-family: "Swanky and Moo Moo", cursive;
+        font-family: "HanYiShouJinShuFan", cursive;
     }
 
-    .message {
-        float: left;
-        width: 300px;
-        box-sizing: border-box;
-        padding: 4em 2em 2em;
-    }
+    // .message {
+    //     float: left;
+    //     width: 300px;
+    //     box-sizing: border-box;
+    //     padding: 4em 2em 2em;
+    // }
 
-    .message:after {
-        content: "";
-        position: absolute;
-        width: 1px;
-        height: 300px;
-        background: #eaeaea;
-        top: 30px;
-        left: 300px;
-    }
+    // .message:after {
+    //     content: "";
+    //     position: absolute;
+    //     width: 1px;
+    //     height: 300px;
+    //     background: #eaeaea;
+    //     top: 30px;
+    //     left: 300px;
+    // }
 
-    .address {
-        float: left;
-        width: 250px;
-        box-sizing: border-box;
-        padding: 7em 2em 2em;
+    // .address {
+    //     float: left;
+    //     width: 250px;
+    //     box-sizing: border-box;
+    //     padding: 7em 2em 2em;
 
-        p {
-            margin: 0.5em 0 0;
-        }
-    }
+    //     p {
+    //         margin: 0.5em 0 0;
+    //     }
+    // }
 
     .photo-by {
         position: absolute;
