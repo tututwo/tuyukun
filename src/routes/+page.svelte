@@ -152,9 +152,6 @@ out:gsapOut={{
     {/if}
 </main>
 
-<footer class="flex items-center justify-center">
-    Give thanks to family and friends
-</footer>
 
 <style>
     :global(.rough-annotation) {

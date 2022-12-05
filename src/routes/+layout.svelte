@@ -110,7 +110,7 @@
     </div>
 {/key}
 
-<footer>
+<footer class="flex items-center justify-center">
     This website is made of love, and shoulder pain as well as endless support
     from Svelte community.
 </footer>
