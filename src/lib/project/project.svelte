@@ -1,18 +1,29 @@
 <script>
     export let individualProject;
 
-    let projectText = individualProject.projectDescription
+    let projectText = individualProject.projectDescription;
+    let titleHeight = 36
+    $: console.log(titleHeight)
 </script>
 
 <div
-    class="front  border-black w-full lg:h-[400px] bg-cover bg-no-repeat bg-center"
-    style="background-image: url({individualProject.projectImgSource});"
-/>
-
+    class="front relative border-black w-full lg:h-[400px] bg-cover bg-no-repeat bg-center"
+    style="background-image: url({individualProject.projectImgSource});border-bottom-width: {titleHeight}px;"
+>
+    <div class="absolute w-full flex justify-center text-center" bind:clientHeight={titleHeight}
+    style = "bottom: -{titleHeight}px">
+        <a
+            href={individualProject.projectLink}
+            class="font-bold font-icon lg:text-[1.5rem]"
+            >{individualProject.projectName}</a
+        >
+    </div>
+</div>
 <div class="back w-full lg:h-[400px] flex flex-col justify-center items-center">
-
-    <div class="address flex flex-col justify-center text-center">
-        <a href={individualProject.projectLink} class="font-bold font-icon lg:text-[2rem]"
+    <div class="flex flex-col justify-center text-center">
+        <a
+            href={individualProject.projectLink}
+            class="font-bold font-icon lg:text-[1.5rem]"
             >{individualProject.projectName}</a
         >
         {#each individualProject.tools as tool}
@@ -23,9 +34,7 @@
         {@html projectText}
     </div>
     <div class="photo-by">Created By 涂钰坤, aka, Gordon Tu</div>
-    <div class="stamp">
-        
-    </div>
+    <div class="stamp" />
 </div>
 
 <style lang="scss">
@@ -34,7 +43,6 @@
         box-shadow: 0 0 20px 0 #999;
         border: 10px solid #fff;
         position: absolute;
-
     }
 
     .front {
@@ -52,6 +60,7 @@
         -moz-transition: all 0.4s ease-in-out;
         -webkit-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
+        
     }
 
     :global(.postcard:hover .front) {
