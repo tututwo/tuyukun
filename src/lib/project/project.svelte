@@ -2,8 +2,10 @@
     export let individualProject;
 </script>
 
-<div class="front border-18 border-black lg:w-[30vw] lg:h-[400px] overflow-hidden bg-cover bg-no-repeat bg-center" 
-style="background-image: url({individualProject.projectImgSource});"/>
+<div
+    class="front border-18 border-black lg:w-[30vw] lg:h-[400px] overflow-hidden bg-cover bg-no-repeat bg-center"
+    style="background-image: url({individualProject.projectImgSource});"
+/>
 
 <div class="back lg:w-[30vw] lg:h-[400px] overflow-hidden">
     <div class="message">
@@ -14,17 +16,17 @@ style="background-image: url({individualProject.projectImgSource});"/>
         <p>D x</p>
     </div>
     <div class="address">
-        <a href="{individualProject.projectLink}">{individualProject.projectName}</a>
+        <a href={individualProject.projectLink}
+            >{individualProject.projectName}</a
+        >
         {#each individualProject.tools as tool}
-        <p>{tool}</p>
+            <p>{tool}</p>
         {/each}
     </div>
-    <div class="photo-by">
-        Created By 涂钰坤, aka, Gordon Tu
+    <div class="photo-by">Created By 涂钰坤, aka, Gordon Tu</div>
+    <div class="stamp">
+        <div class="inner">S</div>
     </div>
-    <!-- <div class="stamp">
-            <div class="inner">S</div>
-        </div> -->
 </div>
 
 <style lang="scss">
@@ -33,7 +35,7 @@ style="background-image: url({individualProject.projectImgSource});"/>
     .front,
     .back {
         box-shadow: 0 0 20px 0 #999;
-        
+
         border: 10px solid #fff;
         position: absolute;
     }
@@ -53,7 +55,6 @@ style="background-image: url({individualProject.projectImgSource});"/>
         -moz-transition: all 0.4s ease-in-out;
         -webkit-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
-        
     }
 
     :global(.postcard:hover .front) {
@@ -129,28 +130,28 @@ style="background-image: url({individualProject.projectImgSource});"/>
         font-size: 0.4em;
     }
 
-    // .stamp {
-    //     width: 50px;
-    //     height: 60px;
-    //     position: absolute;
-    //     top: 10px;
-    //     right: 10px;
-    //     background: $stamp;
-    //     padding: 5px;
-    //     border: 2px dotted #fff;
-    //     .inner {
-    //         border: 4px solid rgba(255, 255, 255, 0.3);
-    //         position: absolute;
-    //         top: 5px;
-    //         bottom: 5px;
-    //         left: 5px;
-    //         right: 5px;
-    //         color: #fff;
-    //         font-family: roboto, serif;
-    //         font-weight: 100;
-    //         font-size: 2em;
-    //         padding-top: 4px;
-    //         text-align: center;
-    //     }
-    // }
+    .stamp {
+        width: 50px;
+        height: 60px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: $stamp;
+        padding: 5px;
+        border: 2px dotted #fff;
+        .inner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            position: absolute;
+            top: 5px;
+            bottom: 5px;
+            left: 5px;
+            right: 5px;
+            color: #fff;
+            font-family: roboto, serif;
+            font-weight: 100;
+            font-size: 2em;
+            padding-top: 4px;
+            text-align: center;
+        }
+    }
 </style>
