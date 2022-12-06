@@ -18,9 +18,9 @@
      */
     let headerWidth = 1000;
     let titleTags = [
-        { tag: "Charts", color: "#E4523E" },
-        { tag: "Maps", color: "#81ABD9" },
-        { tag: "Creative Coding", color: "#0EAEC9" },
+        { tag: "charts", color: "#E4523E" },
+        { tag: "maps", color: "#81ABD9" },
+        { tag: "code creatively", color: "#0EAEC9" },
     ];
     let tagTextColor = "black";
 
@@ -54,18 +54,16 @@
 <header
     class="relative w-full lg:h-[50vh] flex items-center justify-center font-bold text-[1.3rem]"
 >
-    <div class="grid" bind:offsetWidth={headerWidth}>
-        <div class="clearText">
-            <div class="actualClearText">Hi, I'm Gordon Tu. I make</div>
-        </div>
+    <div class=" min-w-[60vw]" bind:offsetWidth={headerWidth}>
+        <div class="flex items-center">
         <!--* Project Tags -->
-        <div
-            class="font-black font-heading text-[2rem] cursor-pointer flex items-center justify-start clearText"
-        >
+            <span class="clearText">
+                <p class="actualClearText">Hi, I'm Gordon Tu. I make</p>
+            </span>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             {#each titleTags as { tag, color }, index}
-                <div
-                    class="actualClearText mx-2 pb-2 mt-2  flex items-center justify-center w-[20vw] text-[2rem] tracking-tight"
+                <span
+                    class="z-[1000] font-heading font-black cursor-pointer mx-2 px-2 flex items-center justify-center text-[2rem] tracking-tight"
                     style="color: {'white'}"
                     bind:this={tagNodes[index]}
                     on:click={filterProjectButton}
@@ -78,13 +76,14 @@
                     }}
                 >
                     {tag}
-                </div>
+                </span>
             {/each}
+            <div> on the web,</div>
         </div>
         <!--* Blog Tag -->
         <div class="clearText">
             <div class="actualClearText">
-                on the web, and I also write
+               and I also write
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <span
                     use:annotateAction={{
@@ -95,7 +94,7 @@
                         strokeWidth: 6,
                     }}
                     class="cursor-pointer font-bold font-heading text-[2rem] "
-                    on:click={showBlogSelection}>Blogs</span
+                    on:click={showBlogSelection}>blogs</span
                 >
                 <button on:click={showBlogSelection}>
                     <Icon icon="ph:cursor-fill" /></button
@@ -119,13 +118,15 @@
         </div>
     </div>
 </header>
-
+<!-- in:gsapIn
+out:gsapOut={{
+    currentProjectTitleTagLength:
+        currentProjectTitleTag.length,
+}} -->
 <main class="h-full min-h-[2000px] w-full flex justify-center">
     <!--* Project  -->
     {#if currentProjectTitleTag.length > 0}
         {#key currentProjectTitleTag}
-            <!-- style:width={headerWidth +"px"} -->
-            <!-- flex items-center justify-start flex-wrap h-full w-full -->
             <section
                 class="h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2"
                 style:width={headerWidth + "px"}
@@ -135,11 +136,6 @@
                         id={individualProject.projectName}
                         class="postcard hover lg:w-[90%] gap-[10rem] lg:h-[400px] mb-10 relative flex justify-center items-center"
                         bind:this={projectNodes[i]}
-                        in:gsapIn
-                        out:gsapOut={{
-                            currentProjectTitleTagLength:
-                                currentProjectTitleTag.length,
-                        }}
                     >
                         <!--  -->
                         <Project {individualProject} />
@@ -163,7 +159,6 @@
     }
     .clearText {
         position: relative;
-
         width: fit-content;
     }
 
@@ -182,8 +177,6 @@
 
     .actualClearText {
         position: relative;
-
-        font-size: 1em;
         line-height: 0.9;
         z-index: 1000;
     }

@@ -45,6 +45,8 @@
 		"rehype-external-links": "^2.0.1",
 		"rehype-slug": "^5.0.1",
 		"rough-notation": "^0.5.1",
-		"svelte-rough-notation": "^0.1.4"
+		"svelte-lazy-loader": "^1.0.0",
+		"svelte-rough-notation": "^0.1.4",
+		"vite-imagetools": "^4.0.11"
 	}
 }

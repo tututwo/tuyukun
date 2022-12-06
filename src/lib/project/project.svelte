@@ -3,7 +3,7 @@
 
     let projectText = individualProject.projectDescription;
     let titleHeight = 36
-    $: console.log(titleHeight)
+    
 </script>
 
 <div

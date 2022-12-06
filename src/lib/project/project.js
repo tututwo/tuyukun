@@ -10,7 +10,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Charts/d3_Himalayan.png",
         tools: ["Observable"],
-        titleTag: "Charts",
+        titleTag: "charts",
         date: "2022-01-01"
     },
     {
@@ -22,7 +22,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Charts/svelte_teacherSalary.png",
         tools: ["Svelte", "D3"],
-        titleTag: "Charts",
+        titleTag: "charts",
         date: "2021-07-01"
     },
     {
@@ -34,7 +34,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Charts/svelte-covid-cn.png",
         tools: ["Svelte", "D3", "R"],
-        titleTag: "Charts",
+        titleTag: "charts",
         date: "2022-08-01"
     },
     {
@@ -46,7 +46,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Charts/tt_Beer_Produciton.png",
         tools: ["R"],
-        titleTag: "Charts",
+        titleTag: "charts",
         date: "2020-12-10"
     },
     {
@@ -58,7 +58,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Charts/tt_Broadway.png",
         tools: ["R"],
-        titleTag: "Charts",
+        titleTag: "charts",
         date: "2021-01-10"
     },
     {
@@ -70,7 +70,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/css-doodle-纹样.png",
         tools: ["CSS"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-12-02"
     },
     {
@@ -82,7 +82,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_GR_animateCubes.png",
         tools: ["Observable"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-01-02"
     },
     {
@@ -94,7 +94,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_GR_blobRing.png",
         tools: ["Observable"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-01-09"
     },
     {
@@ -106,7 +106,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_GR_circlePackingMerging.png",
         tools: ["Observable"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-02-09"
     },
     {
@@ -118,7 +118,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_GR_lotusLeave.png",
         tools: ["Observable"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-01-19"
     },
     {
@@ -130,7 +130,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_GR_roughSquare.png",
         tools: ["Observable"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-01-01"
     },
     {
@@ -142,7 +142,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_SDF.png",
         tools: ["GLSL"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2022-08-01"
     },
     {
@@ -154,7 +154,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_lattern.png",
         tools: ["Observable"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-07-01"
     },
     {
@@ -166,7 +166,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_lightning.png",
         tools: ["GLSL"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2021-10-01"
     },
     {
@@ -178,7 +178,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/CreativeCoding/Observable_kois.png",
         tools: ["GLSL"],
-        titleTag: "Creative Coding",
+        titleTag: "code creatively",
         date: "2022-09-10"
     },
     {
@@ -190,7 +190,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Maps/map_datawrapper_agriculture.png",
         tools: ["Datawrapper"],
-        titleTag: "Maps",
+        titleTag: "maps",
         date: "2020-12-10"
     },
     {
@@ -202,7 +202,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Maps/map_elevation_ridge.png",
         tools: ["QGIS", "Adobe Illustrator"],
-        titleTag: "Maps",
+        titleTag: "maps",
         date: "2020-10-17"
     },
     {
@@ -214,7 +214,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Maps/map_Manhattan.png",
         tools: ["QGIS"],
-        titleTag: "Maps",
+        titleTag: "maps",
         date: "2020-12-27"
     },
     {
@@ -226,7 +226,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Maps/map_ridgelineSichuan.png",
         tools: ["Observable"],
-        titleTag: "Maps",
+        titleTag: "maps",
         date: "2022-01-27"
     },
     {
@@ -238,7 +238,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Maps/map_shuimomap_shuimo.png",
         tools: ["QGIS"],
-        titleTag: "Maps",
+        titleTag: "maps",
         date: "2020-11-07"
     },
     {
@@ -250,7 +250,7 @@ export const projectCardInfo = writable([
         projectImgSource:
             "/projects/Maps/map_twodragons.png",
         tools: ["QGIS"],
-        titleTag: "Maps",
+        titleTag: "maps",
         date: "2020-11-27"
     },
 ]); 
