@@ -54,7 +54,7 @@
 <header
     class="relative w-full lg:h-[50vh] flex items-center justify-center font-bold text-[1.3rem]"
 >
-    <div class=" min-w-[60vw]" bind:offsetWidth={headerWidth}>
+    <div class="lg:px-[300px] lg:min-w-[40vw]" bind:offsetWidth={headerWidth}>
         <div class="flex items-center">
         <!--* Project Tags -->
             <span class="clearText">
@@ -63,7 +63,7 @@
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             {#each titleTags as { tag, color }, index}
                 <span
-                    class="z-[1000] font-heading font-black cursor-pointer mx-2 px-2 flex items-center justify-center text-[2rem] tracking-tight"
+                    class="z-[1000] font-heading font-black cursor-pointer mx-2 px-2 flex items-center justify-center text-[2rem] "
                     style="color: {'white'}"
                     bind:this={tagNodes[index]}
                     on:click={filterProjectButton}
@@ -128,7 +128,7 @@ out:gsapOut={{
     {#if currentProjectTitleTag.length > 0}
         {#key currentProjectTitleTag}
             <section
-                class="h-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-2"
+                class="h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
                 style:width={headerWidth + "px"}
             >
                 {#each currentProjectTitleTag as individualProject, i (individualProject.projectName)}

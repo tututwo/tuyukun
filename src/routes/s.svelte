@@ -1,220 +1,275 @@
-<script>
-    // listing vars here so they're in the global scope
-    var cards,
-        nCards,
-        cover,
-        openContent,
-        openContentText,
-        pageIsOpen = false,
-        openContentImage,
-        closeContent,
-        windowWidth,
-        windowHeight,
-        currentCard;
-
-    // initiate the process
-    init();
-
-    function init() {
-        resize();
-        selectElements();
-        attachListeners();
-    }
-
-    // select all the elements in the DOM that are going to be used
-    function selectElements() {
-        (cards = document.getElementsByClassName("card")),
-            (nCards = cards.length),
-            (cover = document.getElementById("cover")),
-            (openContent = document.getElementById("open-content")),
-            (openContentText = document.getElementById("open-content-text")),
-            (openContentImage = document.getElementById("open-content-image"));
-        closeContent = document.getElementById("close-content");
-    }
-
-    /* Attaching three event listeners here:
-  - a click event listener for each card
-  - a click event listener to the close button
-  - a resize event listener on the window
-*/
-    function attachListeners() {
-        for (var i = 0; i < nCards; i++) {
-            attachListenerToCard(i);
+<template>
+    <div
+      class="gallery"
+      :class="{ 'gallery-display': show }"
+      @mouseleave="hideGallery"
+    >
+      <div>
+        <div v-for="(imageRow, i) in imageRows" class="gallery__row">
+          <div
+            v-for="(image, j) in imageRow"
+            class="gallery__row__image"
+            :style="{ width: `${100 / columns}%` }"
+          >
+            <div
+              :class="[
+                'postcard',
+                { 'postcard-transition': transition === image }
+              ]"
+              :style="getPostcardStyle(i, j, image)"
+              @click="(e) => selectImage(i, j, image)"
+              :ref="`pc_${i}${j}`"
+            >
+              <div class="postcard__front">
+                <div>
+                  <img :src="image" @mouseenter="showGallery" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="overlay" v-show="activeImage" @click="activeImage = null"></div>
+    </div>
+  </template>
+  
+  <script>
+  export default {
+    props: {
+      images: {
+        type: Array,
+        default() {
+          return [
+            "https://picsum.photos/id/22/300/200",
+            "https://picsum.photos/id/8/300/200",
+            "https://picsum.photos/id/90/300/200",
+            "https://picsum.photos/id/66/300/200",
+            "https://picsum.photos/id/100/300/200",
+            "https://picsum.photos/id/123/300/200"
+          ];
         }
-        closeContent.addEventListener("click", onCloseClick);
-        window.addEventListener("resize", resize);
-    }
-
-    function attachListenerToCard(i) {
-        cards[i].addEventListener("click", function (e) {
-            var card = getCardElement(e.target);
-            onCardClick(card, i);
-        });
-    }
-
-    /* When a card is clicked */
-    function onCardClick(card, i) {
-        // set the current card
-        currentCard = card;
-        // add the 'clicked' class to the card, so it animates out
-        currentCard.className += " clicked";
-        // animate the card 'cover' after a 500ms delay
-        setTimeout(function () {
-            animateCoverUp(currentCard);
-        }, 500);
-        // animate out the other cards
-        animateOtherCards(currentCard, true);
-        // add the open class to the page content
-        openContent.className += " open";
-    }
-
-    /*
-     * This effect is created by taking a separate 'cover' div, placing
-     * it in the same position as the clicked card, and animating it to
-     * become the background of the opened 'page'.
-     * It looks like the card itself is animating in to the background,
-     * but doing it this way is more performant (because the cover div is
-     * absolutely positioned and has no children), and there's just less
-     * having to deal with z-index and other elements in the card
-     */
-    function animateCoverUp(card) {
-        // get the position of the clicked card
-        var cardPosition = card.getBoundingClientRect();
-        // get the style of the clicked card
-        var cardStyle = getComputedStyle(card);
-        setCoverPosition(cardPosition);
-        setCoverColor(cardStyle);
-        scaleCoverToFillWindow(cardPosition);
-        // update the content of the opened page
-        openContentText.innerHTML =
-            "<h1>" + card.children[2].textContent + "</h1>" + paragraphText;
-        openContentImage.src = card.children[1].src;
-        setTimeout(function () {
-            // update the scroll position to 0 (so it is at the top of the 'opened' page)
-            window.scroll(0, 0);
-            // set page to open
-            pageIsOpen = true;
-        }, 300);
-    }
-
-    function animateCoverBack(card) {
-        var cardPosition = card.getBoundingClientRect();
-        // the original card may be in a different position, because of scrolling, so the cover position needs to be reset before scaling back down
-        setCoverPosition(cardPosition);
-        scaleCoverToFillWindow(cardPosition);
-        // animate scale back to the card size and position
-        cover.style.transform =
-            "scaleX(" +
-            1 +
-            ") scaleY(" +
-            1 +
-            ") translate3d(" +
-            0 +
-            "px, " +
-            0 +
-            "px, 0px)";
-        setTimeout(function () {
-            // set content back to empty
-            openContentText.innerHTML = "";
-            openContentImage.src = "";
-            // style the cover to 0x0 so it is hidden
-            cover.style.width = "0px";
-            cover.style.height = "0px";
-            pageIsOpen = false;
-            // remove the clicked class so the card animates back in
-            currentCard.className = currentCard.className.replace(
-                " clicked",
-                ""
-            );
-        }, 301);
-    }
-
-    function setCoverPosition(cardPosition) {
-        // style the cover so it is in exactly the same position as the card
-        cover.style.left = cardPosition.left + "px";
-        cover.style.top = cardPosition.top + "px";
-        cover.style.width = cardPosition.width + "px";
-        cover.style.height = cardPosition.height + "px";
-    }
-
-    function setCoverColor(cardStyle) {
-        // style the cover to be the same color as the card
-        cover.style.backgroundColor = cardStyle.backgroundColor;
-    }
-
-    function scaleCoverToFillWindow(cardPosition) {
-        // calculate the scale and position for the card to fill the page,
-        var scaleX = windowWidth / cardPosition.width;
-        var scaleY = windowHeight / cardPosition.height;
-        var offsetX =
-            (windowWidth / 2 - cardPosition.width / 2 - cardPosition.left) /
-            scaleX;
-        var offsetY =
-            (windowHeight / 2 - cardPosition.height / 2 - cardPosition.top) /
-            scaleY;
-        // set the transform on the cover - it will animate because of the transition set on it in the CSS
-        cover.style.transform =
-            "scaleX(" +
-            scaleX +
-            ") scaleY(" +
-            scaleY +
-            ") translate3d(" +
-            offsetX +
-            "px, " +
-            offsetY +
-            "px, 0px)";
-    }
-
-    /* When the close is clicked */
-    function onCloseClick() {
-        // remove the open class so the page content animates out
-        openContent.className = openContent.className.replace(" open", "");
-        // animate the cover back to the original position card and size
-        animateCoverBack(currentCard);
-        // animate in other cards
-        animateOtherCards(currentCard, false);
-    }
-
-    function animateOtherCards(card, out) {
-        var delay = 100;
-        for (var i = 0; i <script nCards; i++) {
-            // animate cards on a stagger, 1 each 100ms
-            if (cards[i] === card) continue;
-            if (out) animateOutCard(cards[i], delay);
-            else animateInCard(cards[i], delay);
-            delay += 100;
+      },
+      columns: {
+        type: Number,
+        default: 3
+      },
+      height: {
+        type: Number,
+        default: 200
+      },
+      width: {
+        type: Number,
+        default: 300
+      }
+    },
+    data() {
+      return {
+        loaded: false,
+        activeImage: null,
+        show: false,
+        rotations: {},
+        transition: null
+      };
+    },
+    computed: {
+      imageRows() {
+        return Array(Math.ceil(this.images.length / this.columns))
+          .fill()
+          .map((_, i) =>
+            this.images.slice(i * this.columns, i * this.columns + this.columns)
+          );
+      }
+    },
+    created() {
+      this.setRotations();
+    },
+    methods: {
+      loadedAll() {
+        this.loaded = true;
+      },
+      showGallery() {
+        if (!this.show) {
+          this.show = true;
         }
-    }
-
-    // animations on individual cards (by adding/removing card names)
-    function animateOutCard(card, delay) {
-        setTimeout(function () {
-            card.className += " out";
-        }, delay);
-    }
-
-    function animateInCard(card, delay) {
-        setTimeout(function () {
-            card.className = card.className.replace(" out", "");
-        }, delay);
-    }
-
-    // this function searches up the DOM tree until it reaches the card element that has been clicked
-    function getCardElement(el) {
-        if (el.className.indexOf("card ") > -1) return el;
-        else return getCardElement(el.parentElement);
-    }
-
-    // resize function - records the window width and height
-    function resize() {
-        if (pageIsOpen) {
-            // update position of cover
-            var cardPosition = currentCard.getBoundingClientRect();
-            setCoverPosition(cardPosition);
-            scaleCoverToFillWindow(cardPosition);
+      },
+      hideGallery() {
+        if (this.show && !this.activeImage) {
+          this.setRotations();
+          this.show = false;
         }
-        windowWidth = window.innerWidth;
-        windowHeight = window.innerHeight;
+      },
+      selectImage(row, col, image) {
+        const pc = this.$refs[`pc_${row}${col}`][0];
+        const startHandler = (e) => {
+          this.transition = image;
+        };
+        const endHandler = (e) => {
+          if (!this.activeImage) {
+            this.transition = null;
+            pc.removeEventListener("transitionstart", startHandler);
+            e.target.removeEventListener("transitionend", endHandler);
+            console.log("transition ended");
+          }
+        };
+        pc.addEventListener("transitionstart", startHandler);
+        pc.addEventListener("transitionend", endHandler);
+        this.activeImage = image;
+      },
+      getCenter(row, col) {
+        const rowOffset = this.imageRows.length / 2 - row;
+        let translateY = rowOffset * (this.height + 60) + rowOffset * 50;
+        if (!(this.imageRows.length % 2)) {
+          if (!translateY) {
+            translateY -= 155;
+          } else {
+            translateY /= 2;
+          }
+        }
+  
+        const colOffset = Math.floor(this.columns / 2 - col);
+        let translateX =
+          colOffset * (this.width + 40) +
+          (colOffset * (1200 - (this.width + 40) * this.columns)) / this.columns;
+        return {
+          translateY,
+          translateX
+        };
+      },
+      setRotations() {
+        const shuffleArray = (arr) =>
+          arr
+            .map((a) => [Math.random(), a])
+            .sort((a, b) => a[0] - b[0])
+            .map((a) => a[1]);
+  
+        let indices = shuffleArray(Array.from(Array(this.images.length).keys()));
+        console.log(indices);
+        this.imageRows.forEach((row, i) =>
+          row.forEach((col, j) => {
+            const getRandom = (min, max) =>
+              Math.floor(Math.random() * (max - min + 1) + min);
+  
+            const centre = this.getCenter(i, j);
+            let translateY = centre.translateY;
+            const translateYTolerance = (this.height + 60) * 0.5;
+            translateY += getRandom(-translateYTolerance, translateYTolerance);
+  
+            let translateX = centre.translateX;
+            const translateXTolerance = (this.width + 40) * 0.5;
+            translateX += getRandom(-translateXTolerance, translateXTolerance);
+  
+            this.rotations[`${i},${j}`] = {
+              row: translateY,
+              col: translateX,
+              rot: getRandom(-60, 60),
+              zIndex: indices.splice(0, 1)
+            };
+          })
+        );
+      },
+      getPostcardStyle(row, col, image) {
+        const centre = this.getCenter(row, col);
+  
+        if (this.activeImage === image) {
+          return {
+            width: `${this.width + 40}px`,
+            height: `${this.height + 60}px`,
+            transition: "all 0.2s",
+            transform: `translateX(${centre.translateX}px) translateY(${centre.translateY}px) translateZ(500px)!important`
+          };
+        }
+  
+        return {
+          width: `${this.width + 40}px`,
+          height: `${this.height + 60}px`,
+          transform: `translateX(${
+            this.rotations[`${row},${col}`].col
+          }px) translateY(${this.rotations[`${row},${col}`].row}px) rotateZ(${
+            this.rotations[`${row},${col}`].rot
+          }deg)`
+          //zIndex: `${this.rotations[`${row},${col}`].zIndex}`
+        };
+      }
     }
-
-</script>
+  };
+  </script>
+  
+  <style scoped lang="less">
+  .gallery {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    width: 100%;
+    perspective: 1000px;
+  
+    &__row {
+      display: flex;
+      flex-wrap: wrap;
+  
+      + .gallery__row {
+        margin-top: 50px;
+      }
+  
+      &__image {
+        text-align: center;
+      }
+    }
+  }
+  
+  .gallery-display {
+    .postcard {
+      transform: none !important;
+      cursor: pointer;
+    }
+  
+    .postcard-transition {
+      z-index: 1;
+      transition: all 0.2s;
+    }
+  }
+  
+  .postcard {
+    transform-style: preserve-3d;
+    box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 2.3px 70.9px rgba(0, 0, 0, 0.072), 0 6.8px 15.4px rgba(0, 0, 0, 0.01);
+    overflow: hidden;
+    margin: auto;
+    transition: all 0.6s;
+    position: relative;
+    font-size: 18px;
+    font-family: "Shadows Into Light", cursive;
+    border-radius: 4px;
+  
+    &__front {
+      background-color: floralwhite;
+      padding-top: 20px;
+      height: 100%;
+      width: 100%;
+    }
+  }
+  
+  .overlay {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    margin: -50vh -50vw -50vh -50vw;
+    background-color: black;
+    opacity: 0.5;
+  }
+  </style>
+  
+  <style>
+  body {
+    height: 100vh;
+    max-width: 1200px;
+    margin: auto;
+    background-color: aliceblue;
+  }
+  </style>
+  

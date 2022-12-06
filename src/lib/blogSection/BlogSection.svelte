@@ -1,6 +1,7 @@
 <script>
+    import Icon from "@iconify/svelte";
     import { onMount, beforeUpdate } from "svelte";
-
+    import { blogCardInfo } from "$lib/blogSection/blog"
     onMount(() => {});
     let data = [0, 1, 2, 3, 4, 5, 6];
     let clicked = false;
@@ -9,22 +10,22 @@
 
 <section>
     <div class="options" >
-        {#each data as d, i}
+        {#each $blogCardInfo as blog, i}
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div
                 on:click={() => {activeIndex = i}}
                 class:active = {i == activeIndex}
                 class="option"
-                style="--optionBackground:url(/post-images/svelte-demo.png);"
+                style="--optionBackground:url({blog.blogImgSource});"
             >
                 <div class="shadow" />
                 <div class="label">
                     <div class="icon">
-                        <i class="fas fa-walking" />
+                        <Icon icon='{blog.icon}' />
                     </div>
                     <div class="info">
-                        <a class="main" href="https://observablehq.com/@tututwo/lightning?collection=@tututwo/three-js-creative-coding-practice">Gordon Tu</a>
-                        <div class="sub">Blog Title</div>
+                        <a class="main" href="{blog.blogLink}">{blog.blogtName}</a>
+                        <div class="sub">{blog.date}</div>
                     </div>
                 </div>
             </div>

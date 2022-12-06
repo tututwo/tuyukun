@@ -1,11 +1,14 @@
-import { sveltekit } from '@sveltejs/kit/vite';
+import { sveltekit } from "@sveltejs/kit/vite";
+import _compress from "vite-plugin-compress"
+const compress = _compress.default;
 
 /** @type {import('vite').UserConfig} */
 const config = {
-	plugins: [sveltekit()],
-  ssr: {
-		noExternal: ['three', 'troika-three-text']
-	}
+    plugins: [sveltekit(), compress()],
+    ssr: {
+        noExternal: ["three", "troika-three-text"],
+
+    },
 };
 
 export default config;
