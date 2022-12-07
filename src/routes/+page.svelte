@@ -52,9 +52,9 @@
 </script>
 
 <header
-    class="relative w-full lg:h-[50vh] flex items-center justify-center font-bold text-[1.3rem]"
+    class="relative top-[20vh] w-full lg:min-h-[100vh] flex flex-col items-center justify-center font-bold text-[1.2rem]"
 >
-    <div class="lg:px-[300px] lg:min-w-[40vw]" bind:offsetWidth={headerWidth}>
+    <div class="lg:px-[300px] lg:min-w-[40vw]" >
         <div class="flex items-center">
         <!--* Project Tags -->
             <span class="clearText">
@@ -117,38 +117,40 @@
             >
         </div>
     </div>
+
+    <div class="mt-10 h-full min-h-[2000px] w-full flex justify-center ">
+        <!--* Project  -->
+        {#if currentProjectTitleTag.length > 0}
+            {#key currentProjectTitleTag}
+                <section
+                    class="h-full w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-10"
+                    
+                >
+                    {#each currentProjectTitleTag as individualProject, i (individualProject.projectName)}
+                        <div
+                            id={individualProject.projectName}
+                            class="postcard hover lg:w-[90%] gap-[10rem] h-[20vh] lg:h-[400px] mb-10 relative flex justify-center items-center"
+                            bind:this={projectNodes[i]}
+                        >
+                            <!--  -->
+                            <Project {individualProject} />
+                        </div>
+                    {/each}
+                </section>
+            {/key} 
+        {/if}
+        <!--* Blog -->
+        {#if currentProjectTitleTag.length == 0}
+            <BlogSection />
+        {/if}
+    </div>
 </header>
 <!-- in:gsapIn
 out:gsapOut={{
     currentProjectTitleTagLength:
         currentProjectTitleTag.length,
 }} -->
-<main class="h-full min-h-[2000px] w-full flex justify-center">
-    <!--* Project  -->
-    {#if currentProjectTitleTag.length > 0}
-        {#key currentProjectTitleTag}
-            <section
-                class="h-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-                style:width={headerWidth + "px"}
-            >
-                {#each currentProjectTitleTag as individualProject, i (individualProject.projectName)}
-                    <div
-                        id={individualProject.projectName}
-                        class="postcard hover lg:w-[90%] gap-[10rem] lg:h-[400px] mb-10 relative flex justify-center items-center"
-                        bind:this={projectNodes[i]}
-                    >
-                        <!--  -->
-                        <Project {individualProject} />
-                    </div>
-                {/each}
-            </section>
-        {/key}
-    {/if}
-    <!--* Blog -->
-    {#if currentProjectTitleTag.length == 0}
-        <BlogSection />
-    {/if}
-</main>
+
 
 <style>
     :global(.rough-annotation) {

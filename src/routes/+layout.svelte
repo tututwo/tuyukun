@@ -1,7 +1,7 @@
 <script>
     // export const prerender = true
     import "../app.css";
-
+    import 'css-doodle';
     import Analytics from "$lib/Analytics.svelte";
     import Header from "$lib/landingPage/Header.svelte";
 
@@ -91,12 +91,12 @@
           `}
     </css-doodle>
 </div>
-<svelte:head>
+<!-- <svelte:head>
     <script
         defer
         src="https://unpkg.com/css-doodle@0.30.8/css-doodle.js"
     ></script>
-</svelte:head>
+</svelte:head> -->
 
 {#key data.currentRoute}
     <div

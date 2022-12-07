@@ -10,7 +10,7 @@
     class="front relative border-black w-full lg:h-[400px] bg-cover bg-no-repeat bg-center"
     style="background-image: url({individualProject.projectImgSource});border-bottom-width: {titleHeight}px;"
 >
-    <div class="absolute w-full flex justify-center text-center" bind:clientHeight={titleHeight}
+    <div class="absolute w-full flex justify-center text-center " bind:clientHeight={titleHeight}
     style = "bottom: -{titleHeight}px">
         <a
             href={individualProject.projectLink}

@@ -38,7 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"css-doodle": "^0.30.8",
+		"css-doodle": "^0.30.10",
 		"d3": "^7.6.1",
 		"gsap": "file:gsap-bonus.tgz",
 		"imagemin-pngquant": "^9.0.2",
