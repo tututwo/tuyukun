@@ -52,7 +52,7 @@
 </script>
 
 <header
-    class="relative top-[20vh] w-full lg:min-h-[100vh] flex flex-col items-center justify-center font-bold text-[1.2rem]"
+    class="relative top-[20vh] w-full lg:min-h-[50vh] flex flex-col items-center justify-center font-bold text-[1.2rem]"
 >
     <div class="lg:px-[300px] lg:min-w-[40vw]" >
         <div class="flex items-center">
@@ -94,7 +94,7 @@
                         strokeWidth: 6,
                     }}
                     class="cursor-pointer font-bold font-heading text-[2rem] "
-                    on:click={showBlogSelection}>blogs</span
+                    on:click={showBlogSelection}>blog posts</span
                 >
                 <button on:click={showBlogSelection}>
                     <Icon icon="ph:cursor-fill" /></button
