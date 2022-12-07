@@ -5,7 +5,7 @@
 </script>
 
 <!--TODO I need category and titleSection data -->
-<div class="grid lg:grid-cols-blogSectionLg lg:gap-x-6">
+<div class="grid lg:grid-cols-blogSectionLg lg:gap-x-6 bg-white">
   <div></div>
   <slot />
   <div class="block sticky [align-self:start] top-0">

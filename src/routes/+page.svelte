@@ -102,8 +102,8 @@
             </div>
         </div>
         <!--* Icon -->
-        <div class="flex mr-10">
-            <a href="https://twitter.com/tu_yukun" class="mx-2"
+        <div class="flex  mt-2">
+            <a href="https://twitter.com/tu_yukun" class="mr-2"
                 ><Icon
                     class="hover:color-[grey]"
                     icon="akar-icons:twitter-fill"
@@ -115,6 +115,9 @@
             <a href="https://observablehq.com/@tututwo?tab=profile" class="mx-2"
                 ><Icon icon="simple-icons:observable" /></a
             >
+            <a href="https://www.linkedin.com/in/gordon-tu-675a43255/"  class="mx-2 scale-125"
+            ><Icon icon="mdi:linkedin" /></a
+        >
         </div>
     </div>
 
