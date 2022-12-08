@@ -1,17 +1,49 @@
 <script>
     export let individualProject;
-
+   
+    export let projectNodes = {}
     let projectText = individualProject.projectDescription;
-    let titleHeight = 36
-    
+    let titleHeight = 36;
+
+    let rotateXAxis, rotateYAxis;
+    let projectCard = {};
+
+    let mouseX,
+        mouseY,
+        rotateXY = ``;
+
+    $: {
+        const rotateXAxis = (mouseX / projectCard.clientWidth) * 40
+        const rotateYAxis = (mouseY / projectCard.clientHeight) * -40
+        rotateXY = `transform: rotateY(${rotateXAxis}deg) rotateX(${rotateYAxis}deg)`;
+        console.log(rotateXAxis)
+    }
+
+    function handleMouseMove(e) {
+        // https://www.javascripttutorial.net/javascript-dom/javascript-width-height/
+        
+        mouseX = e.pageX - projectNodes.offsetLeft - projectCard.clientWidth / 2;
+        mouseY = e.pageY - projectNodes.offsetTop - projectCard.clientHeight / 2;
+        
+    }
+    function handleMouseLeave() {
+        // setTimeout(()=>{
+        // mouseX = 0;
+        // mouseY = 0;
+        rotateXY = ``;
+        //   }, 1000);
+    }
 </script>
 
 <div
     class="front relative border-black w-full lg:h-[400px] bg-cover bg-no-repeat bg-center"
     style="background-image: url({individualProject.projectImgSource});border-bottom-width: {titleHeight}px;"
 >
-    <div class="absolute w-full flex justify-center text-center " bind:clientHeight={titleHeight}
-    style = "bottom: -{titleHeight}px">
+    <div
+        class="absolute w-full flex justify-center text-center "
+        bind:clientHeight={titleHeight}
+        style="bottom: -{titleHeight}px"
+    >
         <a
             href={individualProject.projectLink}
             class="font-bold font-icon lg:text-[1.5rem]"
@@ -19,20 +51,28 @@
         >
     </div>
 </div>
-<div class="back w-full lg:h-[400px] flex flex-col justify-center items-center">
-    <div class="flex flex-col justify-center text-center">
+<!-- on:mousemove={handleMouseMove} -->
+<div
+    class="back card-wrap w-full lg:h-[400px] flex flex-col justify-center items-center"
+    style={rotateXY}
+    on:mousemove={handleMouseMove}
+    on:mouseleave={handleMouseLeave}
+    bind:this={projectCard}
+    
+>
+    <div class="card flex flex-col justify-center text-center">
         <a
             href={individualProject.projectLink}
-            class="font-bold font-icon lg:text-[1.5rem]"
+            class=" font-heading lg:text-[1.5rem]"
             >{individualProject.projectName}</a
         >
         {#each individualProject.tools as tool}
-            <p>{tool}</p>
+            <p class="font-light">{tool}</p>
         {/each}
     </div>
-    <div class="message">
+    <!-- <div class="message">
         {@html projectText}
-    </div>
+    </div> -->
     <div class="photo-by">Created By 涂钰坤, aka, Gordon Tu</div>
     <div class="stamp" />
 </div>
@@ -60,7 +100,6 @@
         -moz-transition: all 0.4s ease-in-out;
         -webkit-transition: all 0.4s ease-in-out;
         transition: all 0.4s ease-in-out;
-        
     }
 
     :global(.postcard:hover .front) {
@@ -161,4 +200,6 @@
             text-align: center;
         }
     }
+   
+    
 </style>

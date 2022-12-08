@@ -6,7 +6,7 @@
     import BlogSection from "$lib/blogSection/BlogSection.svelte";
 
     import { fade, fly } from "svelte/transition";
-    import { onMount } from "svelte";
+    import { onMount, afterUpdate } from "svelte";
     import { gsapOut, gsapIn } from "$lib/utils/tweens";
 
     let options = {};
@@ -32,9 +32,17 @@
     $: currentProjectTitleTag = $projectCardInfo.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
     });
-    let projectNodes = [];
 
-    let visible = false;
+    let projectNodes = [];
+    // afterUpdate(() => {
+       $: {
+        projectNodes.forEach((projectNode, i) => {
+            projectNode["projectCardOffsetLeft"] = projectNodes[i].offsetLeft
+            projectNode["projectCardOffsetHeight"] = projectNodes[i].offsetHeight
+        })}
+
+
+
     function filterProjectButton(event) {
         currentProjectTitleTag = $projectCardInfo.filter(
             // .textContent will not work
@@ -54,9 +62,9 @@
 <header
     class="relative top-[20vh] w-full lg:min-h-[50vh] flex flex-col items-center justify-center font-bold text-[1.2rem]"
 >
-    <div class="lg:px-[300px] lg:min-w-[40vw]" >
+    <div class="lg:px-[300px] lg:min-w-[40vw]">
         <div class="flex items-center">
-        <!--* Project Tags -->
+            <!--* Project Tags -->
             <span class="clearText">
                 <p class="actualClearText">Hi, I'm Gordon Tu. I make</p>
             </span>
@@ -78,12 +86,12 @@
                     {tag}
                 </span>
             {/each}
-            <div> on the web,</div>
+            <div>on the web,</div>
         </div>
         <!--* Blog Tag -->
         <div class="clearText">
             <div class="actualClearText">
-               and I also write
+                and I also write
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <span
                     use:annotateAction={{
@@ -115,9 +123,10 @@
             <a href="https://observablehq.com/@tututwo?tab=profile" class="mx-2"
                 ><Icon icon="simple-icons:observable" /></a
             >
-            <a href="https://www.linkedin.com/in/gordon-tu-675a43255/"  class="mx-2 scale-125"
-            ><Icon icon="mdi:linkedin" /></a
-        >
+            <a
+                href="https://www.linkedin.com/in/gordon-tu-675a43255/"
+                class="mx-2 scale-125"><Icon icon="mdi:linkedin" /></a
+            >
         </div>
     </div>
 
@@ -127,20 +136,24 @@
             {#key currentProjectTitleTag}
                 <section
                     class="h-full w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ml-10"
-                    
                 >
                     {#each currentProjectTitleTag as individualProject, i (individualProject.projectName)}
                         <div
                             id={individualProject.projectName}
                             class="postcard hover lg:w-[90%] gap-[10rem] h-[20vh] lg:h-[400px] mb-10 relative flex justify-center items-center"
                             bind:this={projectNodes[i]}
+                            
                         >
-                            <!--  -->
-                            <Project {individualProject} />
+                            <!--                                 projectOffsetLeft={projectNodes[i].offsetLeft}
+                                projectOffsetHeight={projectNodes[i].offsetHeight} -->
+                            <Project
+                                {individualProject}
+                                projectNodes = {projectNodes[i]}
+                            />
                         </div>
                     {/each}
                 </section>
-            {/key} 
+            {/key}
         {/if}
         <!--* Blog -->
         {#if currentProjectTitleTag.length == 0}
@@ -148,13 +161,12 @@
         {/if}
     </div>
 </header>
+
 <!-- in:gsapIn
 out:gsapOut={{
     currentProjectTitleTagLength:
         currentProjectTitleTag.length,
 }} -->
-
-
 <style>
     :global(.rough-annotation) {
         z-index: 999;
@@ -184,5 +196,11 @@ out:gsapOut={{
         position: relative;
         line-height: 0.9;
         z-index: 1000;
+    }
+
+    .postcard {
+        /* transform: perspective(800px);
+  transform-style: preserve-3d; */
+        perspective: 1000px;
     }
 </style>
