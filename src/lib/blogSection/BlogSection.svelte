@@ -3,8 +3,7 @@
     import { onMount, beforeUpdate } from "svelte";
     import { blogCardInfo } from "$lib/blogSection/blog"
     onMount(() => {});
-    let data = [0, 1, 2, 3, 4, 5, 6];
-    let clicked = false;
+
     let activeIndex=0
 </script>
 
