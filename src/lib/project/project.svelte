@@ -1,7 +1,14 @@
 <script>
     export let individualProject;
    
-    export let projectNodes = {}
+    export let projectNode = {}
+    $: {
+        // projectNode.forEach((projectNode, i) => {
+            projectNode["projectCardOffsetLeft"] = projectNode.offsetLeft;
+            projectNode["projectCardOffsetHeight"] =
+                projectNode.offsetHeight;
+        // });
+    }
     let projectText = individualProject.projectDescription;
     let titleHeight = 36;
 
@@ -13,17 +20,17 @@
         rotateXY = ``;
 
     $: {
-        const rotateXAxis = (mouseX / projectCard.clientWidth) * 40
-        const rotateYAxis = (mouseY / projectCard.clientHeight) * -40
+        const rotateXAxis = (mouseX / projectCard.clientWidth) * 25
+        const rotateYAxis = (mouseY / projectCard.clientHeight) * -25
         rotateXY = `transform: rotateY(${rotateXAxis}deg) rotateX(${rotateYAxis}deg)`;
-        console.log(rotateXAxis)
+       
     }
 
     function handleMouseMove(e) {
         // https://www.javascripttutorial.net/javascript-dom/javascript-width-height/
         
-        mouseX = e.pageX - projectNodes.offsetLeft - projectCard.clientWidth / 2;
-        mouseY = e.pageY - projectNodes.offsetTop - projectCard.clientHeight / 2;
+        mouseX = e.pageX - projectNode.offsetLeft - projectCard.clientWidth / 2;
+        mouseY = e.pageY - projectNode.offsetTop - projectCard.clientHeight / 2;
         
     }
     function handleMouseLeave() {
@@ -36,7 +43,7 @@
 </script>
 
 <div
-    class="front relative border-black w-full lg:h-[400px] bg-cover bg-no-repeat bg-center"
+    class="front relative border-black w-full h-full lg:h-[400px] bg-cover bg-no-repeat bg-center"
     style="background-image: url({individualProject.projectImgSource});border-bottom-width: {titleHeight}px;"
 >
     <div
@@ -53,7 +60,7 @@
 </div>
 <!-- on:mousemove={handleMouseMove} -->
 <div
-    class="back card-wrap w-full lg:h-[400px] flex flex-col justify-center items-center"
+    class="back card-wrap w-full h-full lg:h-[400px] flex flex-col justify-center items-center"
     style={rotateXY}
     on:mousemove={handleMouseMove}
     on:mouseleave={handleMouseLeave}
@@ -78,6 +85,8 @@
 </div>
 
 <style lang="scss">
+        $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
+    $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
     .front,
     .back {
         box-shadow: 0 0 20px 0 #999;

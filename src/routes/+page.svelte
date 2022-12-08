@@ -35,14 +35,8 @@
 
     let projectNodes = [];
     // afterUpdate(() => {
-       $: {
-        projectNodes.forEach((projectNode, i) => {
-            projectNode["projectCardOffsetLeft"] = projectNodes[i].offsetLeft
-            projectNode["projectCardOffsetHeight"] = projectNodes[i].offsetHeight
-        })}
 
-
-
+    $: console.log(currentProjectTitleTag);
     function filterProjectButton(event) {
         currentProjectTitleTag = $projectCardInfo.filter(
             // .textContent will not work
@@ -142,13 +136,12 @@
                             id={individualProject.projectName}
                             class="postcard hover lg:w-[90%] gap-[10rem] h-[20vh] lg:h-[400px] mb-10 relative flex justify-center items-center"
                             bind:this={projectNodes[i]}
-                            
                         >
                             <!--                                 projectOffsetLeft={projectNodes[i].offsetLeft}
                                 projectOffsetHeight={projectNodes[i].offsetHeight} -->
                             <Project
                                 {individualProject}
-                                projectNodes = {projectNodes[i]}
+                                projectNode={projectNodes[i]}
                             />
                         </div>
                     {/each}
@@ -167,7 +160,7 @@ out:gsapOut={{
     currentProjectTitleTagLength:
         currentProjectTitleTag.length,
 }} -->
-<style>
+<style lang="scss">
     :global(.rough-annotation) {
         z-index: 999;
     }
@@ -199,8 +192,6 @@ out:gsapOut={{
     }
 
     .postcard {
-        /* transform: perspective(800px);
-  transform-style: preserve-3d; */
         perspective: 1000px;
     }
 </style>
