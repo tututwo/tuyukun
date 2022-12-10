@@ -1,12 +1,15 @@
 <script>
     export let individualProject;
-   
-    export let projectNode = {}
+
+    export let projectNode = {};
+    // $: console.log(projectNode);
     $: {
-        // projectNode.forEach((projectNode, i) => {
+        if (projectNode) {
             projectNode["projectCardOffsetLeft"] = projectNode.offsetLeft;
-            projectNode["projectCardOffsetHeight"] =
-                projectNode.offsetHeight;
+            projectNode["projectCardOffsetHeight"] = projectNode.offsetHeight;
+        }
+        // projectNode.forEach((projectNode, i) => {
+
         // });
     }
     let projectText = individualProject.projectDescription;
@@ -20,18 +23,16 @@
         rotateXY = ``;
 
     $: {
-        const rotateXAxis = (mouseX / projectCard.clientWidth) * 25
-        const rotateYAxis = (mouseY / projectCard.clientHeight) * -25
+        const rotateXAxis = (mouseX / projectCard.clientWidth) * 25;
+        const rotateYAxis = (mouseY / projectCard.clientHeight) * -25;
         rotateXY = `transform: rotateY(${rotateXAxis}deg) rotateX(${rotateYAxis}deg)`;
-       
     }
 
     function handleMouseMove(e) {
         // https://www.javascripttutorial.net/javascript-dom/javascript-width-height/
-        
+
         mouseX = e.pageX - projectNode.offsetLeft - projectCard.clientWidth / 2;
         mouseY = e.pageY - projectNode.offsetTop - projectCard.clientHeight / 2;
-        
     }
     function handleMouseLeave() {
         // setTimeout(()=>{
@@ -65,7 +66,6 @@
     on:mousemove={handleMouseMove}
     on:mouseleave={handleMouseLeave}
     bind:this={projectCard}
-    
 >
     <div class="card flex flex-col justify-center text-center">
         <a
@@ -78,14 +78,14 @@
         {/each}
     </div>
     <!-- <div class="message">
-        {@html projectText}
-    </div> -->
+    {@html projectText}
+</div> -->
     <div class="photo-by">Created By 涂钰坤, aka, Gordon Tu</div>
     <div class="stamp" />
 </div>
 
 <style lang="scss">
-        $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
+    $hoverEasing: cubic-bezier(0.23, 1, 0.32, 1);
     $returnEasing: cubic-bezier(0.445, 0.05, 0.55, 0.95);
     .front,
     .back {
@@ -209,6 +209,4 @@
             text-align: center;
         }
     }
-   
-    
 </style>

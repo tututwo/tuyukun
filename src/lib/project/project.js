@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export const projectCardInfo = writable([
+export let projectCardInfo = writable([
     {
         projectName: "Number of Middle Age Himalayan Climbers Is Increasing Over Time",
         projectDescription:
@@ -177,7 +177,7 @@ export const projectCardInfo = writable([
             "https://observablehq.com/@tututwo/kois",
         projectImgSource:
             "/projects/CreativeCoding/Observable_kois.png",
-        tools: ["GLSL"],
+        tools: ["Canvas"],
         titleTag: "code creatively",
         date: "2022-09-10"
     },
@@ -212,7 +212,7 @@ export const projectCardInfo = writable([
         projectLink:
             "/projects/Maps/map_Manhattan.png",
         projectImgSource:
-            "/projects/Maps/map_Manhattan.png",
+            "/projects/Maps/map_Manhattan_cover.png",
         tools: ["QGIS"],
         titleTag: "maps",
         date: "2020-12-27"
@@ -236,7 +236,7 @@ export const projectCardInfo = writable([
         projectLink:
             "/projects/Maps/map_shuimomap_shuimo.png",
         projectImgSource:
-            "/projects/Maps/map_shuimomap_shuimo.png",
+            "/projects/Maps/map_shuimomap_shuimo_cover.png",
         tools: ["QGIS"],
         titleTag: "maps",
         date: "2020-11-07"
@@ -248,7 +248,7 @@ export const projectCardInfo = writable([
         projectLink:
             "/projects/Maps/map_twodragons.png",
         projectImgSource:
-            "/projects/Maps/map_twodragons.png",
+            "/projects/Maps/map_twodragons_cover.png",
         tools: ["QGIS"],
         titleTag: "maps",
         date: "2020-11-27"

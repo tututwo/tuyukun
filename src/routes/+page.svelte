@@ -29,20 +29,24 @@
      * Project
      */
 
-    $: currentProjectTitleTag = $projectCardInfo.sort((a, b) => {
+    let currentProjectTitleTag = $projectCardInfo.sort((a, b) => {
         return new Date(b.date) - new Date(a.date);
     });
 
-    let projectNodes = [];
+    $: projectNodes = [];
+    
     // afterUpdate(() => {
-
-    $: console.log(currentProjectTitleTag);
+    $: console.log(projectNodes)
     function filterProjectButton(event) {
+        console.log(event.target.innerText);
         currentProjectTitleTag = $projectCardInfo.filter(
             // .textContent will not work
             // https://stackoverflow.com/questions/24427621/innertext-vs-innerhtml-vs-label-vs-text-vs-textcontent-vs-outertext
             (d) => d.titleTag == event.target.innerText
         );
+        currentProjectTitleTag = currentProjectTitleTag.sort((a, b) => {
+            return new Date(b.date) - new Date(a.date);
+        });
     }
 
     /**
@@ -124,7 +128,7 @@
         </div>
     </div>
 
-    <div class="mt-10 h-full min-h-[2000px] w-full flex justify-center ">
+    <div class="mt-10 h-full lg:min-h-[2000px] w-full flex justify-center ">
         <!--* Project  -->
         {#if currentProjectTitleTag.length > 0}
             {#key currentProjectTitleTag}
