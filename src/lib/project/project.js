@@ -54,7 +54,7 @@ export let projectCardInfo = writable([
         projectDescription:
             "Exploring the net gross and days before the awarding date of each musical that debutted after 1986",
         projectLink:
-            "https://blog.datawrapper.de/wp-content/uploads/2022/08/image11-3.png",
+            "/projects/Charts/tt_Broadway.png",
         projectImgSource:
             "/projects/Charts/tt_Broadway.png",
         tools: ["R"],

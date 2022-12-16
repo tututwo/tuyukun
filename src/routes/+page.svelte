@@ -36,9 +36,7 @@
     $: projectNodes = [];
     
     // afterUpdate(() => {
-    $: console.log(projectNodes)
     function filterProjectButton(event) {
-        console.log(event.target.innerText);
         currentProjectTitleTag = $projectCardInfo.filter(
             // .textContent will not work
             // https://stackoverflow.com/questions/24427621/innertext-vs-innerhtml-vs-label-vs-text-vs-textcontent-vs-outertext
