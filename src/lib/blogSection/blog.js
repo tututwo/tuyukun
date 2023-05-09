@@ -18,7 +18,7 @@ export const blogCardInfo = writable([
         blogLink:
             "https://observablehq.com/@tututwo/gsap-scrolltrigger-in-observable",
         blogImgSource:
-            "post-images/observalbe/scrolltrigger.png",
+            "/post-images/observalbe/scrolltrigger.png",
         date: "2022-05-01"
     }
 ])

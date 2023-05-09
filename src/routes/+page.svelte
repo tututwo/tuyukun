@@ -56,9 +56,9 @@
 </script>
 
 <header
-    class="relative top-[20vh] w-full lg:min-h-[50vh] flex flex-col items-center justify-center font-bold text-[1.2rem]"
+    class="relative top-[20vh] w-full lg:min-h-[50vh] flex flex-col items-center justify-center  text-[1.2rem]"
 >
-    <div class="lg:px-[300px] lg:min-w-[40vw]">
+    <div class="lg:px-[300px] lg:min-w-[40vw] ">
         <div class="flex items-center">
             <!--* Project Tags -->
             <span class="clearText">

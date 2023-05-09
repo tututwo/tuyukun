@@ -14,7 +14,7 @@
     class="absolute h-full w-full flex items-start justify-center overflow-hidden z-[-1] pointer-events-none"
     
 >
-    <css-doodle >
+    <!-- <css-doodle >
         {`
           :doodle {
           @grid: 16 / 100vmin 80vmin;
@@ -90,7 +90,7 @@
           }
           }
           `}
-    </css-doodle>
+    </css-doodle> -->
 </div>
 <!-- <svelte:head>
     <script
@@ -111,7 +111,7 @@
     </div>
 {/key}
 
-<footer class="flex items-center justify-center mt-20 z-[-1]">
+<footer class="flex items-center justify-center mt-[120px] z-[-1]">
     This website is made of love, and shoulder pain as well as endless support
     from Svelte community.
 </footer>
