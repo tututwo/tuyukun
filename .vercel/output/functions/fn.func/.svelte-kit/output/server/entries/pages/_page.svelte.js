@@ -35,7 +35,7 @@ const Icon = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       }
     }
   }
-  return `${data !== null ? `<svg${spread([escape_object(data.attributes)], {})}><!-- HTML_TAG_START -->${data.body}<!-- HTML_TAG_END --></svg>` : ``}`;
+  return `${data ? `${data.svg ? `<svg${spread([escape_object(data.attributes)], {})}><!-- HTML_TAG_START -->${data.body}<!-- HTML_TAG_END --></svg>` : `<span${spread([escape_object(data.attributes)], {})}></span>`}` : ``}`;
 });
 const project_svelte_svelte_type_style_lang = "";
 const css$2 = {
